@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { LinksFunction, MetaFunction } from '@remix-run/node';
 import {
   Links,
   LiveReload,
@@ -6,12 +6,24 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react";
+} from '@remix-run/react';
+
+
+import tailwindStyles from '~/styles/tailwind.css';
+import vendorsStyles from '~/styles/vendors.css';
+
+export let links: LinksFunction = () => {
+  return [
+    { rel: 'stylesheet', href: 'https://rsms.me/inter/inter.css' },
+    { rel: 'stylesheet', href: vendorsStyles },
+    { rel: 'stylesheet', href: tailwindStyles },
+  ];
+};
 
 export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "New Remix App",
-  viewport: "width=device-width,initial-scale=1",
+  charset: 'utf-8',
+  title: 'ConcertX',
+  viewport: 'width=device-width,initial-scale=1',
 });
 
 export default function App() {
