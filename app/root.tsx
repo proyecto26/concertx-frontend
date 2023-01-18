@@ -60,6 +60,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 export const meta: MetaFunction = ({ data }) => {
   const requestData = (data as LoaderData | undefined)?.requestData;
   return {
+    referrer: 'strict-origin-when-cross-origin',
     ...getSocialMetas({
       url: data?.url,
       title: requestData?.title,
