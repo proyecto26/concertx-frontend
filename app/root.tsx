@@ -9,16 +9,15 @@ import {
   useLoaderData,
   useLocation,
 } from '@remix-run/react';
-
+import { useEffect } from 'react';
+import { AuthenticityTokenProvider } from 'remix-utils';
 
 import tailwindStyles from '~/styles/tailwind.css';
 import vendorsStyles from '~/styles/vendors.css';
 import { getGlobalSession } from '~/cookies/session.server';
 import { getAuthSession } from '~/cookies/auth.server';
 import { getEnv } from '~/env.server';
-import { getSocialMetas } from '~/utils/seo';
-import { useEffect } from 'react';
-import { AuthenticityTokenProvider } from 'remix-utils';
+import { getGlobalMetaTags } from '~/utils/seo';
 
 export let links: LinksFunction = () => {
   return [
@@ -60,8 +59,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 export const meta: MetaFunction = ({ data }) => {
   const requestData = (data as LoaderData | undefined)?.requestData;
   return {
-    referrer: 'strict-origin-when-cross-origin',
-    ...getSocialMetas({
+    ...getGlobalMetaTags({
       url: data?.url,
       title: requestData?.title,
       description: requestData?.description,

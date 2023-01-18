@@ -1,4 +1,4 @@
-export function getSocialMetas({
+export function getGlobalMetaTags({
   image = '',
   url = 'https://www.concertx.com',
   title = 'ConcertsX - The Crowdfunding Platform for Musicians',
@@ -8,6 +8,7 @@ export function getSocialMetas({
   charset = 'utf-8',
   viewport = 'width=device-width,initial-scale=1,viewport-fit=cover',
   keywords = 'crowdfunding, musicians, concerts, blockchain, smart contracts, live broadcasting, virtual reality, music industry, recording studios, rewards, fans, backers',
+  referrer = 'strict-origin-when-cross-origin',
 }: {
   url: string
   image?: string
@@ -16,6 +17,7 @@ export function getSocialMetas({
   keywords?: string,
   charset?: 'utf-8',
   viewport?: string,
+  referrer?: string,
 }) {
   return {
     charset,
@@ -24,6 +26,7 @@ export function getSocialMetas({
     description,
     keywords,
     image,
+    referrer,
     'og:url': url,
     'og:title': title,
     'og:description': description,
