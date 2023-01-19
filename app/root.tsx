@@ -21,6 +21,8 @@ import { getGlobalMetaTags } from '~/utils/seo';
 
 export let links: LinksFunction = () => {
   return [
+    { rel: 'manifest', href: '/site.webmanifest' },
+    { rel: 'icon', href: '/favicon.ico' },
     { rel: 'stylesheet', href: 'https://rsms.me/inter/inter.css' },
     { rel: 'stylesheet', href: vendorsStyles },
     { rel: 'stylesheet', href: tailwindStyles },
