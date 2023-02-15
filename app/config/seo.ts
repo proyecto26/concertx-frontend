@@ -1,10 +1,10 @@
 export function getGlobalMetaTags({
   image = '',
   url = 'https://www.concertx.com',
-  title = 'ConcertsX - The Crowdfunding Platform for Musicians',
-  description = `ConcertsX is a revolutionary crowdfunding platform for musicians.
+  title = 'ConcertX - The Crowdfunding Platform for Musicians',
+  description = `ConcertX is a revolutionary crowdfunding platform for musicians.
   Our platform uses blockchain technology to enable trusted transactions between musicians and their backers, and also allows musicians to share their rehearsals and broadcast live to their fans.
-  Support your favorite musicians and bring unique concerts to life with ConcertsX.`,
+  Support your favorite musicians and bring unique concerts to life with ConcertX.`,
   charset = 'utf-8',
   viewport = 'width=device-width,initial-scale=1,viewport-fit=cover',
   keywords = 'crowdfunding, musicians, concerts, blockchain, smart contracts, live broadcasting, virtual reality, music industry, recording studios, rewards, fans, backers',

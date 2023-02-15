@@ -56,7 +56,7 @@ const Footer: React.FC<FooterProps> = () => {
         </div>
         <div className="mt-8 md:order-1 md:mt-0">
           <div className="text-center text-gray-500 font-medium text-sm lg:text-base">
-            Copyright &copy; {currentYear} ConcertsX, All rights reserved.
+            Copyright &copy; {currentYear} ConcertX, All rights reserved.
           </div>
         </div>
       </div>
