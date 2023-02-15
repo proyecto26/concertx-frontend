@@ -8,7 +8,7 @@ function getRequiredEnvVarFromObj<T>(
   if (envVal) {
     value = envVal;
   } else if (obj.NODE_ENV !== 'development') {
-    throw new Error(`${key} is a required env variable`);
+    throw new Error(`${key} is a required env variable - ${obj.NODE_ENV}`);
   }
   return value as T;
 }

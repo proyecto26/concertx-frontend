@@ -1,6 +1,6 @@
 import { createCookieSessionStorage } from '@remix-run/node';
 
-import { sessionSecret } from '../utils/misc.server';
+import { sessionSecret } from '~/config/env.server';
 
 const authStorage = createCookieSessionStorage({
   cookie: {

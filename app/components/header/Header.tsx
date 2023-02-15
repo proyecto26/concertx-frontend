@@ -1,6 +1,12 @@
-import React from 'react';
+import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/20/solid';
+import { Link } from '@remix-run/react';
+import clsx from 'clsx';
+import React, { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
-import Logo from '../icons/Logo';
+import { useScroll } from '~/hooks';
+import { MobileNavigation } from '../mobile/Navigation';
+import Search from '../search/Search';
 
 type HeaderProps = {
   title?: string;
@@ -9,44 +15,87 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = ({
   title = 'ConcertX'
 }) => {
+  const [isExpanded, setExpanded] = useState(false);
+  const { isScrolled } = useScroll();
   return (
-    <header className="bg-white shadow-md fixed top-0 right-0 left-0 z-10">
-      <div className="flex flex-wrap items-center justify-between">
-        <a aria-label={title} className="w-8" href="/">
-          <Logo />
-        </a>
-        <div className="relative w-full hidden lg:w-auto flex-shrink-0 lg:flex lg:items-center">
-          <div className="w-full lg:w-auto lg:ml-4 flex items-center justify-center lg:justify-end">
-            <form className="w-full max-w-xl">
-              <div className="flex items-center border-b-2 border-teal-500 py-2">
-                <input className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" type="text" placeholder="Search..." />
-                <button className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
-                  Search
-                </button>
-              </div>
-            </form>
+    <AnimatePresence initial={false}>
+      <header
+        className={clsx(
+          'sticky top-0 z-50 flex flex-wrap items-center justify-between bg-white px-4 py-5 shadow-md shadow-slate-900/5 transition duration-500 dark:shadow-none sm:px-6 lg:px-8',
+          isScrolled
+            ? 'dark:bg-slate-900/95 dark:backdrop-blur dark:[@supports(backdrop-filter:blur(0))]:bg-slate-900/75'
+            : 'dark:bg-transparent'
+        )}
+      >
+        <div className="flex w-full flex-wrap items-center justify-between">
+          <div className="mr-6 flex lg:hidden">
+            <MobileNavigation />
+          </div>
+          <div className="relative flex items-center flex-grow md:flex-[0.2_0_auto]">
+            <Link to="/" aria-label="Home page">
+              <img src='/assets/logo_con.svg' className="h-9 w-auto fill-slate-700 dark:fill-sky-100 rounded-full" />
+            </Link>
+          </div>
+          <div className="flex-1 hidden md:block">
+            <Search />
+          </div>
+          <div className="relative flex justify-end gap-2 sm:gap-4 md:gap-8 md:flex-[0.2_0_auto]">
+            <ul className="list-reset hidden xl:flex justify-end flex-1 items-center">
+              <li className="mr-3">
+                <a className="inline-block py-2 px-4 text-gray-800 no-underline" href="#">Artists</a>
+              </li>
+              <li className="mr-3">
+                <a className="inline-block py-2 px-4 text-gray-800 no-underline" href="#">Events</a>
+              </li>
+            </ul>
+            {!isExpanded && (
+              <motion.button
+                key="open_search"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ type: 'spring' }}
+                onClick={() => setExpanded(true)}
+                type="button"
+                className="md:hidden flex-shrink-0 inline-flex items-center rounded-full border border-transparent p-2.5 text-black shadow-sm focus:outline-none"
+              >
+                <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
+                <span className="sr-only">Open Search</span>
+              </motion.button>
+            )}
+            <button className="hidden md:block flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
+              Connect Wallet
+            </button>
+            <button type="button" className="md:hidden flex-shrink-0 focus:outline-none font-medium text-sm p-2.5 text-center inline-flex items-center">
+              <img aria-hidden="true" src='/assets/wallet_icon.svg' className="w-9 h-9 fill-slate-700" />
+              <span className="sr-only">Connect Wallet</span>
+            </button>
           </div>
         </div>
-        <div className="block lg:hidden pr-4">
-          <button id="nav-toggle" className="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-800 hover:border-teal-500 appearance-none focus:outline-none">
-            <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" /></svg>
-          </button>
-        </div>
-        <div className="w-full lg:flex lg:items-center basis-0 hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
-          <ul className="list-reset lg:flex justify-end flex-1 items-center">
-            <li className="mr-3">
-              <a className="inline-block py-2 px-4 text-gray-800 no-underline" href="#">Artists</a>
-            </li>
-            <li className="mr-3">
-              <a className="inline-block py-2 px-4 text-gray-800 no-underline" href="#">Events</a>
-            </li>
-          </ul>
-          <button className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
-            Connect Wallet
-          </button>
-        </div>
-      </div>
-    </header>
+        {isExpanded && (
+          <motion.div
+            className="md:hidden flex-1 flex flex-row"
+            key="search"
+            initial="collapsed"
+            animate="open"
+            variants={{
+              open: { opacity: 1, height: "auto" },
+              collapsed: { opacity: 0, height: 0 }
+            }}
+            transition={{ duration: 0.8, ease: [0.04, 0.62, 0.23, 0.98] }}
+          >
+            <Search className="flex-1" />
+            <button
+              onClick={() => setExpanded(false)}
+              type="button"
+              className="flex-none flex-shrink-0 inline-flex items-center rounded-full border border-transparent p-2.5 text-black shadow-sm focus:outline-none"
+            >
+              <XMarkIcon className="h-5 w-5" aria-hidden="true" />
+              <span className="sr-only">Close Search</span>
+            </button>
+          </motion.div>
+        )}
+      </header>
+    </AnimatePresence>
   );
 };
 

@@ -17,7 +17,7 @@ import vendorsStyles from '~/styles/vendors.css';
 import { getGlobalSession } from '~/cookies/session.server';
 import { getAuthSession } from '~/cookies/auth.server';
 import { getEnv } from '~/env.server';
-import { getGlobalMetaTags } from '~/utils/seo';
+import { getGlobalMetaTags } from '~/config/seo';
 
 export let links: LinksFunction = () => {
   return [

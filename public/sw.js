@@ -13,10 +13,12 @@ function initializeWorkbox() {
   // Automatically adds an activate event listener to service worker
   workbox.core.clientsClaim();
 
+  /*
   const navigationRoute = new workbox.routing.NavigationRoute(new workbox.strategies.NetworkFirst({
     networkTimeoutSeconds: 3,
     cacheName: 'navigations'
   }));
+  */
   
   const staticAssetsRoute = new workbox.routing.Route(({request}) => {
     return [
@@ -43,7 +45,7 @@ function initializeWorkbox() {
     ],
   }));
   
-  workbox.routing.registerRoute(navigationRoute);
+  // workbox.routing.registerRoute(navigationRoute);
   workbox.routing.registerRoute(staticAssetsRoute);
   workbox.routing.registerRoute(mediaAssetsRoute);
 }

@@ -20,7 +20,7 @@ export async function getGlobalSession(request: Request) {
   );
   return {
     createAuthenticityToken: () => createAuthenticityToken(session),
-    verifyAuthenticityToken: () => verifyAuthenticityToken(request, session),
+    verifyAuthenticityToken: (sessionKey?: string) => verifyAuthenticityToken(request, session, sessionKey),
     getError: () => session.get(ERROR_KEY) as string | undefined,
     flashError: (error: string) => session.flash(ERROR_KEY, error),
     getMessage: () => session.get(MESSAGE_KEY) as string | undefined,
