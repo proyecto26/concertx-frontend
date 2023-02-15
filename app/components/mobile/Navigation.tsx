@@ -73,7 +73,7 @@ export function MobileNavigation() {
                   <CloseIcon className="h-6 w-6 stroke-slate-500" />
                 </button>
                 <Link to="/" className="ml-6" aria-label="Home page">
-                  <img src='/assets/logo_con.svg' className="h-9 w-9 fill-slate-700 dark:fill-sky-100 rounded-full" />
+                  <img alt="Logo" src='/assets/logo_con.svg' className="h-9 w-9 fill-slate-700 dark:fill-sky-100 rounded-full" />
                 </Link>
               </div>
               <Navigation className="mt-5 px-1" />

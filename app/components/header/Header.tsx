@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({
           </div>
           <div className="relative flex items-center flex-grow md:flex-[0.2_0_auto]">
             <Link to="/" aria-label="Home page">
-              <img src='/assets/logo_con.svg' className="h-9 w-auto fill-slate-700 dark:fill-sky-100 rounded-full" />
+              <img alt="Logo" src='/assets/logo_con.svg' className="h-9 w-auto fill-slate-700 dark:fill-sky-100 rounded-full" />
             </Link>
           </div>
           <div className="flex-1 hidden md:block">
