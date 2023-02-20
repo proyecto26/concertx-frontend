@@ -2,3 +2,12 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 @import 'tailwindcss/screens';
+
+@layer components {
+  .navlink {
+    @apply font-light;
+  }
+  .navlink.active {
+    @apply font-bold;
+  }
+}

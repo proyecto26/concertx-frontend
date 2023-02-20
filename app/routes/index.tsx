@@ -1,34 +1,30 @@
+import { json, LoaderFunction } from '@remix-run/node';
+import { isPrefetch } from 'remix-utils';
+
+import Layout from '~/components/Layout';
+
+export const loader: LoaderFunction = ({ request }) => {
+  const headers = new Headers();
+  if (isPrefetch(request)) {
+    headers.set('Cache-Control', 'private, max-age=10');
+  }
+
+  return json({
+    headers,
+  });
+};
+
 export default function Index() {
   return (
-    <div className="w-full mx-auto p-10">
-      <h1 className="text-5xl text-center font-bold">
-        Welcome to ConcertX
-      </h1>
-      <ul className="pt-5">
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
-    </div>
+    <Layout>
+      <section className="mx-auto px-8 py-24 max-w-5xl">
+        <div className="flex items-center justify-center">
+          <img className="w-32 h-32 rounded-full mx-auto" src="/assets/logo_con.svg" alt="Logo" />
+        </div>
+        <h1 className="text-3xl text-center font-bold my-4">Welcome to ConcertX</h1>
+        <p className="text-xl text-center mb-8">A revolutionary crowdfunding platform for musicians</p>
+        <div className="flex items-center justify-center"><a className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full" href="#">Discover</a></div>
+      </section>
+    </Layout>
   );
 }
