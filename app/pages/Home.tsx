@@ -67,7 +67,7 @@ const HomePage: React.FC = () => {
               #AlternativeRock
             </span>
           </div>
-          <div className="mt-10 flex max-w-2xl flex-row divide-x divide-gray-300">
+          <div className="mt-10 flex max-w-2xl flex-col gap-5 divide-y lg:flex-row lg:divide-y-0 lg:divide-x divide-gray-300">
             <div className="min-w-[10rem] flex-none">
               <h2 className="text-sm font-semibold uppercase text-gray-900">
                 Total Raised
@@ -79,7 +79,7 @@ const HomePage: React.FC = () => {
                 $369,99
               </p>
             </div>
-            <div className="min-w-[10rem] flex-none px-5 lg:px-10">
+            <div className="min-w-[10rem] flex-none pt-5 lg:pt-0 lg:px-5 xl:px-10">
               <h2 className="text-sm font-semibold uppercase text-gray-900">
                 Total Goal
               </h2>
@@ -90,7 +90,7 @@ const HomePage: React.FC = () => {
                 $369,99
               </p>
             </div>
-            <div className="flex-1 px-5 lg:px-10">
+            <div className="flex-1 pt-5 lg:pt-0 lg:px-5 xl:px-10">
               <h2 className="text-sm font-semibold uppercase text-gray-900">
                 Ending
               </h2>

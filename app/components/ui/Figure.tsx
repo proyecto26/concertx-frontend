@@ -26,7 +26,7 @@ const Figure: React.FC<FigureProps> = ({
     >
       <a href={link}>
         <img
-          className="h-auto max-w-full min-w-[250px] rounded-2xl bg-indigo-50 object-cover md:min-w-[320px] lg:min-w-[460px]"
+          className="h-auto max-w-full min-w-[250px] rounded-2xl bg-indigo-50 object-cover md:min-w-[320px] xl:min-w-[460px]"
           src={imgSrc}
           alt={imgAlt}
         />
