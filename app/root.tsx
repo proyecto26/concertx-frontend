@@ -84,7 +84,7 @@ export default function App() {
           <Meta />
           <Links />
         </head>
-        <body className="h-full bg-gray-100 font-sans leading-normal tracking-normal">
+        <body className="h-full bg-white dark:bg-black font-sans leading-normal tracking-normal">
           <Outlet />
           <ScrollRestoration />
           <Scripts />
