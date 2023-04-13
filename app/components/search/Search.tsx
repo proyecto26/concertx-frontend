@@ -1,8 +1,6 @@
+import { MagnifyingGlassIcon, MicrophoneIcon } from '@heroicons/react/20/solid';
 import React, { useId } from 'react';
-
-import MicIcon from '../icons/Mic';
 import clsx from 'clsx';
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 
 type SearchProps = {
   className?: string;
@@ -27,7 +25,7 @@ const Search: React.FC<SearchProps> = ({ className }) => {
           required
         />
           <button type="button" className="absolute inset-y-0 right-0 flex items-center pr-3" aria-label="Click to speak your search terms">
-            <MicIcon className="w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white" />
+            <MicrophoneIcon className="w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white" />
           </button>
       </div>
     </form>
