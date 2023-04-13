@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
 
 type AvatarProps = PropsWithChildren & {
@@ -6,6 +7,7 @@ type AvatarProps = PropsWithChildren & {
   href?: string
   alt?: string
   details?: string
+  className?: string
 }
 
 const Avatar: React.FC<AvatarProps> = ({
@@ -15,10 +17,11 @@ const Avatar: React.FC<AvatarProps> = ({
   href,
   alt,
   details,
+  className,
 }) => {
   return (
-    <a href={href ?? '#'} className="group block flex-shrink-0 p-3">
-      <div className="flex items-start justify-start">
+    <a href={href ?? '#'} className={clsx('group block pt-3', className)}>
+      <div className="flex items-start">
         <div className="flex-none">
           <img
             className="inline-block h-9 w-9 rounded-full"
@@ -26,10 +29,8 @@ const Avatar: React.FC<AvatarProps> = ({
             alt={alt ?? 'Avatar'}
           />
         </div>
-        <div className="ml-3">
-          <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
-            {name}
-          </p>
+        <div className="ml-3 flex-1">
+          <p className="text-base font-semibold text-gray-900">{name}</p>
           {details && (
             <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
               {details}

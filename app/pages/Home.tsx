@@ -38,7 +38,7 @@ const avatarImg = 'https://avatars.githubusercontent.com/u/2154886?s=40&v=4'
 
 const HomePage: React.FC = () => {
   return (
-    <section className="container mx-auto px-6 lg:px-14 py-12">
+    <section className="container mx-auto px-6 py-12 lg:px-14">
       <div className="flex flex-col rounded-xl bg-[#FAFAFA] md:flex-row">
         <div className="flex w-full items-center justify-center p-5 md:w-1/3 md:px-16">
           <Figure imgSrc="/assets/welcome.png" imgAlt="ConcertX" />
@@ -67,7 +67,7 @@ const HomePage: React.FC = () => {
               #AlternativeRock
             </span>
           </div>
-          <div className="mt-10 flex max-w-2xl flex-col gap-5 divide-y lg:flex-row lg:divide-y-0 lg:divide-x divide-gray-300">
+          <div className="mt-10 flex max-w-2xl flex-col gap-5 divide-y divide-gray-300 lg:flex-row lg:divide-y-0 lg:divide-x">
             <div className="min-w-[10rem] flex-none">
               <h2 className="text-sm font-semibold uppercase text-gray-900">
                 Total Raised
@@ -79,7 +79,7 @@ const HomePage: React.FC = () => {
                 $369,99
               </p>
             </div>
-            <div className="min-w-[10rem] flex-none pt-5 lg:pt-0 lg:px-5 xl:px-10">
+            <div className="min-w-[10rem] flex-none pt-5 lg:px-5 lg:pt-0 xl:px-10">
               <h2 className="text-sm font-semibold uppercase text-gray-900">
                 Total Goal
               </h2>
@@ -90,7 +90,7 @@ const HomePage: React.FC = () => {
                 $369,99
               </p>
             </div>
-            <div className="flex-1 pt-5 lg:pt-0 lg:px-5 xl:px-10">
+            <div className="flex-1 pt-5 lg:px-5 lg:pt-0 xl:px-10">
               <h2 className="text-sm font-semibold uppercase text-gray-900">
                 Ending
               </h2>
@@ -123,7 +123,7 @@ const HomePage: React.FC = () => {
           className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10"
         >
           {trendingEvents.map((event) => (
-            <li key={event.name} className="max-w-sm">
+            <li key={event.name} className="max-w-sm mx-auto">
               <EventCard avatarImg={avatarImg} name={event.name} />
             </li>
           ))}
@@ -151,51 +151,48 @@ const HomePage: React.FC = () => {
           {trendingArtists.map((artist) => (
             <li
               key={artist.name}
-              className="overflow-hidden bg-white sm:rounded-lg sm:shadow"
+              className="border border-gray-300 bg-white px-4 py-5 dark:border-gray-700 dark:bg-gray-800 sm:rounded-lg sm:px-6"
             >
-              <div className="border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800 px-4 py-5 sm:px-6">
-                <div className="-ml-4 -mt-4 flex flex-wrap items-center justify-between sm:flex-nowrap">
-                  <div className="ml-4 mt-4">
-                    <Avatar
-                      img={avatarImg}
-                      name="J.D Nicholls"
-                      details="@jdnichollsc"
-                    >
-                      <div className="mt-4 divide-y divide-gray-300">
-                        <p className="text-sm text-gray-500">
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit quam corrupti consectetur.
+              <div className="flex flex-wrap items-center justify-between sm:flex-nowrap">
+                <Avatar
+                  img={avatarImg}
+                  name="J.D Nicholls"
+                  details="@jdnichollsc"
+                  className="flex-1"
+                >
+                  <div className="mt-4 divide-y divide-gray-300">
+                    <p className="text-sm text-gray-900">
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit
+                      quam corrupti consectetur.
+                    </p>
+                    <div className="mt-4 flex flex-row gap-5 xl:gap-10 pt-4">
+                      <div className="flex-none">
+                        <h2 className="text-xs font-semibold uppercase text-gray-900">
+                          Category
+                        </h2>
+                        <p className="mt-1 text-xs font-normal tracking-tight text-gray-600">
+                          #Rock
                         </p>
-                        <div className="mt-4 pt-4 flex flex-row gap-5">
-                          <div className="flex-none">
-                            <h2 className="text-xs font-semibold uppercase text-gray-900">
-                              Category
-                            </h2>
-                            <p className="mt-1 text-xs font-normal tracking-tight text-gray-600">
-                              #Rock
-                            </p>
-                          </div>
-                          <div className="flex-none">
-                            <h2 className="text-xs font-semibold uppercase text-gray-900">
-                              Followers
-                            </h2>
-                            <p className="mt-1 text-xs font-normal tracking-tight text-gray-600">
-                              26
-                            </p>
-                          </div>
-                          <div className="flex-1 flex justify-end">
-                            <button
-                              type="button"
-                              className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                            >
-                              Follow
-                            </button>
-                          </div>
-                        </div>
                       </div>
-                    </Avatar>
+                      <div className="flex-none">
+                        <h2 className="text-xs font-semibold uppercase text-gray-900">
+                          Followers
+                        </h2>
+                        <p className="mt-1 text-xs font-normal tracking-tight text-gray-600">
+                          26
+                        </p>
+                      </div>
+                      <div className="flex flex-1 justify-end">
+                        <button
+                          type="button"
+                          className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                        >
+                          Follow
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                </Avatar>
               </div>
             </li>
           ))}

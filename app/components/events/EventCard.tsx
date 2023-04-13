@@ -32,7 +32,7 @@ const EventCard: React.FC<EventCardProps> = ({
       </div>
       <div className="flex w-full items-center justify-between space-x-6 p-3">
         <Avatar img={avatarImg} name="J.D Nicholls" details="@jdnichollsc" />
-        <div>
+        <div className="pt-3">
           <h2 className="text-sm font-medium text-gray-700 group-hover:text-gray-900">
             Ending in
           </h2>
