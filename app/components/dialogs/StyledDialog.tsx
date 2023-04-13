@@ -1,15 +1,14 @@
 import { Dialog } from '@headlessui/react';
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 
 import { transitionVariants } from '../../utils/motion';
 
-interface StyledDialogProps {
+interface StyledDialogProps extends PropsWithChildren {
   isOpen: boolean;
   onClose: () => void;
   className?: string;
-  children: ReactNode;
 }
 
 export default function StyledDialog({
