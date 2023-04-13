@@ -1,5 +1,5 @@
 const localDomains = process.env.NODE_ENV === 'development' ? '127.0.0.1:* localhost:* ws://localhost:*' : '';
-const domains = 'https://*.concertx.com';
+const domains = 'https://*.concertx.com https://*.githubusercontent.com';
 const envDomains = [domains, localDomains].filter(Boolean).join(' ');
 
 export const ContentSecurityPolicy = `

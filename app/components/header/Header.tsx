@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useScroll } from '~/hooks';
 import { MobileNavigation } from '../mobile/Navigation';
 import Search from '../search/Search';
+import Button from '../ui/Button';
 
 type HeaderProps = {
   title?: string;
@@ -21,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({
     <AnimatePresence initial={false}>
       <header
         className={clsx(
-          'sticky top-0 z-50 flex flex-wrap items-center justify-between bg-white px-4 py-5 shadow-md shadow-slate-900/5 transition duration-500 dark:shadow-none sm:px-6 lg:px-8',
+          'sticky top-0 z-50 flex flex-wrap items-center justify-between bg-white px-4 py-1 shadow-md shadow-slate-900/5 transition duration-500 dark:shadow-none sm:px-6 lg:px-8',
           isScrolled
             ? 'dark:bg-slate-900/95 dark:backdrop-blur dark:[@supports(backdrop-filter:blur(0))]:bg-slate-900/75'
             : 'dark:bg-transparent'
@@ -32,7 +33,10 @@ const Header: React.FC<HeaderProps> = ({
             <MobileNavigation />
           </div>
           <div className="relative flex items-center flex-grow md:flex-[0.2_0_auto]">
-            <Link to="/" aria-label="Home page">
+            <Link to="/" aria-label="Home page" className="flex flex-row items-center justify-center space-x-3">
+              <h1 className="hidden lg:block text-3xl text-center font-bold my-4">
+                ConcertX
+              </h1>
               <img alt="Logo" src='/assets/logo_con.svg' className="h-9 w-auto fill-slate-700 dark:fill-sky-100 rounded-full" />
             </Link>
           </div>
@@ -62,9 +66,9 @@ const Header: React.FC<HeaderProps> = ({
                 <span className="sr-only">Open Search</span>
               </motion.button>
             )}
-            <button className="hidden md:block flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">
+            <Button>
               Connect Wallet
-            </button>
+            </Button>
             <button type="button" className="md:hidden flex-shrink-0 focus:outline-none font-medium text-sm p-2.5 text-center inline-flex items-center">
               <img aria-hidden="true" src='/assets/wallet_icon.svg' className="w-9 h-9 fill-slate-700" />
               <span className="sr-only">Connect Wallet</span>
