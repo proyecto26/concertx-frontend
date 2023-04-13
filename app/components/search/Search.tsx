@@ -1,8 +1,8 @@
 import React, { useId } from 'react';
 
-import SearchIcon from '../icons/Search';
 import MicIcon from '../icons/Mic';
 import clsx from 'clsx';
+import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 
 type SearchProps = {
   className?: string;
@@ -17,7 +17,7 @@ const Search: React.FC<SearchProps> = ({ className }) => {
       </label>
       <div className="relative w-full">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          <SearchIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+          <MagnifyingGlassIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
         </div>
         <input
           type="text"
