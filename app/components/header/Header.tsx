@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({
             <MobileNavigation />
           </div>
           <div className="relative flex items-center flex-grow md:flex-[0.2_0_auto]">
-            <Link to="/" aria-label="Home page" className="flex flex-row items-center justify-center space-x-3">
+            <Link to="/" aria-label="Home page" className="flex flex-row items-center justify-center space-x-3 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2">
               <h1 className="hidden lg:block text-3xl text-center font-bold my-4">
                 ConcertX
               </h1>
@@ -66,7 +66,7 @@ const Header: React.FC<HeaderProps> = ({
                 <span className="sr-only">Open Search</span>
               </motion.button>
             )}
-            <Button>
+            <Button className="hidden md:block">
               Connect Wallet
             </Button>
             <button type="button" className="md:hidden flex-shrink-0 focus:outline-none font-medium text-sm p-2.5 text-center inline-flex items-center">

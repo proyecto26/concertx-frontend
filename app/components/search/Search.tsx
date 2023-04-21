@@ -7,10 +7,10 @@ type SearchProps = {
 };
 
 const Search: React.FC<SearchProps> = ({ className }) => {
-  const voiceSearchId = useId();
+  const searchId = useId();
   return (
     <form className={clsx('flex items-center', className)}>
-      <label htmlFor={voiceSearchId} className="sr-only">
+      <label htmlFor={searchId} className="sr-only">
         Search
       </label>
       <div className="relative w-full">
@@ -19,12 +19,16 @@ const Search: React.FC<SearchProps> = ({ className }) => {
         </div>
         <input
           type="text"
-          id={voiceSearchId}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-7 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          id={searchId}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-900 focus:border-gray-900 block w-full px-10 py-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-300 dark:focus:border-gray-300"
           placeholder="Search artists, event or venue"
           required
         />
-          <button type="button" className="absolute inset-y-0 right-0 flex items-center pr-3" aria-label="Click to speak your search terms">
+          <button
+            type="button"
+            className="absolute inset-y-0 right-0 flex items-center px-3 focus:ring-offset-2"
+            aria-label="Click to speak your search terms"
+          >
             <MicrophoneIcon className="w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white" />
           </button>
       </div>

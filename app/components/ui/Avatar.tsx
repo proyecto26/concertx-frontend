@@ -1,46 +1,52 @@
 import clsx from 'clsx'
-import React, { PropsWithChildren } from 'react'
+import {
+  HTMLAttributes,
+  PropsWithChildren,
+  forwardRef,
+} from 'react'
+import { useForwardedRef } from '~/hooks'
 
-type AvatarProps = PropsWithChildren & {
+type AvatarProps = PropsWithChildren<HTMLAttributes<HTMLDivElement>> & {
   img: string
   name: string
-  href?: string
   alt?: string
   details?: string
-  className?: string
+  href?: string
 }
 
-const Avatar: React.FC<AvatarProps> = ({
-  children,
-  img,
-  name,
-  href,
-  alt,
-  details,
-  className,
-}) => {
-  return (
-    <a href={href ?? '#'} className={clsx('group block pt-3', className)}>
-      <div className="flex items-start">
-        <div className="flex-none">
-          <img
-            className="inline-block h-9 w-9 rounded-full"
-            src={img}
-            alt={alt ?? 'Avatar'}
-          />
-        </div>
-        <div className="ml-3 flex-1">
-          <p className="text-base font-semibold text-gray-900">{name}</p>
-          {details && (
-            <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-              {details}
-            </p>
-          )}
-          {children}
+const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
+  ({ children, img, name, href, alt, details, className, ...rest }, ref) => {
+    const innerRef = useForwardedRef<HTMLDivElement>(ref)
+    const link = href ?? '#'
+    return (
+      <div
+        className={clsx('group block pt-3', className)}
+        ref={innerRef}
+        {...rest}
+      >
+        <div className="flex items-start">
+          <a href={link} className="flex-none">
+            <img
+              className="inline-block h-9 w-9 rounded-full"
+              src={img}
+              alt={alt ?? 'Avatar'}
+            />
+          </a>
+          <div className="ml-3 flex-1">
+            <a href={link}>
+              <p className="text-base font-semibold text-gray-900">{name}</p>
+              {details && (
+                <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
+                  {details}
+                </p>
+              )}
+            </a>
+            {children}
+          </div>
         </div>
       </div>
-    </a>
-  )
-}
+    )
+  }
+)
 
 export default Avatar

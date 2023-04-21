@@ -1,0 +1,17 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 rounded-lg;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gradient-to-t from-dark-gray to-gray-800;
+}
+
+* {
+  -ms-overflow-style: auto;
+  scrollbar-color: #7a7a7a #1A1B1D;
+  scrollbar-width: thin;
+}

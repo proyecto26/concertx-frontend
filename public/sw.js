@@ -4,6 +4,7 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.2.0/workbox
 
 if (workbox) {
   console.log(`Yay! Workbox is loaded 🎉`);
+  workbox.setConfig({ debug: false, logLevel: 'warn' });
   initializeWorkbox();
 } else {
   console.log(`Boo! Workbox didn't load 😬`);

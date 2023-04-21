@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
+
 import Header from './header/Header';
 import Footer from './footer/Footer';
 
-type LayoutProps = {
-  children: React.ReactNode;
+type LayoutProps = PropsWithChildren<{
   title?: string;
-};
+}>;
 
 const Layout: React.FC<LayoutProps> = ({ children, title }) => {
   return (
