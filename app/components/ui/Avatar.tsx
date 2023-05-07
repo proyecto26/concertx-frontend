@@ -4,6 +4,7 @@ import {
   PropsWithChildren,
   forwardRef,
 } from 'react'
+
 import { useForwardedRef } from '~/hooks'
 
 type AvatarProps = PropsWithChildren<HTMLAttributes<HTMLDivElement>> & {

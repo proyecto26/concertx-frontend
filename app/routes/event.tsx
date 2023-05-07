@@ -1,4 +1,10 @@
-import { EyeIcon, HeartIcon, ShareIcon } from '@heroicons/react/20/solid'
+import {
+  ArrowUpRightIcon,
+  EyeIcon,
+  HeartIcon,
+  ShareIcon,
+} from '@heroicons/react/20/solid'
+import { ClipboardDocumentIcon } from '@heroicons/react/24/outline'
 import { useNavigate } from '@remix-run/react'
 import { motion } from 'framer-motion'
 
@@ -7,10 +13,17 @@ import { MotionAvatar } from '~/components/motion'
 import Badge from '~/components/ui/Badge'
 import Button from '~/components/ui/Button'
 import Figure from '~/components/ui/Figure'
+import { useTruncate } from '~/hooks'
 import { transitionVariants } from '~/utils/motion'
 
 export default function Index() {
   const navigate = useNavigate()
+
+  const truncatedWallet = useTruncate(
+    '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d',
+    12
+  )
+  const truncatedTokenId = useTruncate('1', 5)
   return (
     <Layout>
       <section className="container mx-auto px-5 lg:px-0">
@@ -28,7 +41,7 @@ export default function Index() {
         >
           Online Event
         </motion.p>
-        <div className="grid grid-cols-1 gap-x-8 py-12 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-x-8 pt-8 pb-12 lg:grid-cols-3">
           <div>
             <MotionAvatar
               variants={transitionVariants}
@@ -82,6 +95,83 @@ export default function Index() {
               <h2 className="text-sm font-semibold uppercase text-gray-900">
                 NFT Details
               </h2>
+              <ul className="mt-5 w-full divide-y divide-gray-200 text-gray-900 dark:divide-gray-700 dark:text-white">
+                <li className="flex flex-col pb-3">
+                  <div className="flex items-center space-x-4">
+                    <div className="min-w-0 flex-1">
+                      <p className="md:truncate text-sm font-medium text-gray-900 dark:text-white">
+                        Contract Address
+                      </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                      <span>{truncatedWallet}</span>
+                      <button type="button" aria-label="Check Contract Address">
+                        <ArrowUpRightIcon className="ml-2 h-5 w-5" />
+                      </button>
+                      <button type="button" aria-label="Copy Contract Address">
+                        <ClipboardDocumentIcon className="ml-2 h-5 w-5" />
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li className="flex flex-col py-3">
+                  <div className="flex items-center space-x-4">
+                    <div className="min-w-0 flex-1">
+                      <p className="md:truncate text-sm font-medium text-gray-900 dark:text-white">
+                        Token ID
+                      </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                      <span>{truncatedTokenId}</span>
+                      <button type="button" aria-label="Copy Token ID">
+                        <ClipboardDocumentIcon className="ml-2 h-5 w-5" />
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li className="flex flex-col py-3">
+                  <div className="flex items-center space-x-4">
+                    <div className="min-w-0 flex-1">
+                      <p className="md:truncate text-sm font-medium text-gray-900 dark:text-white">
+                        IPFS
+                      </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                      <button type="button" aria-label="Check IPFS">
+                        <ArrowUpRightIcon className="ml-2 h-5 w-5" />
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li className="flex flex-col py-3">
+                  <div className="flex items-center space-x-4">
+                    <div className="min-w-0 flex-1">
+                      <p className="md:truncate text-sm font-medium text-gray-900 dark:text-white">
+                        IPFS Metadata
+                      </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                      <button type="button" aria-label="Check IPFS Metadata">
+                        <ArrowUpRightIcon className="ml-2 h-5 w-5" />
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li className="flex flex-col pt-3">
+                  <div className="flex items-center space-x-4">
+                    <div className="min-w-0 flex-1">
+                      <p className="md:truncate text-sm font-medium text-gray-900 dark:text-white">
+                        Near Transaction
+                      </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                      <button type="button" aria-label="Check NEAR Transaction">
+                        <ArrowUpRightIcon className="ml-2 h-5 w-5" />
+                      </button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
           <div className="mt-5 flex min-h-full w-full items-center lg:mt-0">
@@ -123,6 +213,153 @@ export default function Index() {
                   Make a contribution
                 </Button>
               </div>
+            </div>
+            <div className="mt-5 flex flex-col border border-gray-300 bg-white px-4 py-5 dark:border-gray-700 dark:bg-gray-800 sm:rounded-lg sm:px-6">
+              <h2 className="text-sm font-semibold uppercase text-gray-900">
+                History
+              </h2>
+              <ul className="mt-5 w-full divide-y divide-gray-200 text-gray-900 dark:divide-gray-700 dark:text-white">
+                <li className="flex flex-col pb-3">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                      <img
+                        className="h-8 w-8 rounded-full"
+                        src="https://avatars.githubusercontent.com/u/2154886?s=40&v=4"
+                        alt="Contributor"
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="md:truncate text-sm font-normal text-gray-900 dark:text-white">
+                        <a href="#" className="font-semibold">
+                          @Evan_Kelly
+                        </a>{' '}
+                        made a contribution
+                      </p>
+                      <p className="md:truncate text-xs font-medium text-gray-500 dark:text-white">
+                        Tuesday, 23 Nov 2021 13:44:56
+                      </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                      <span>$10</span>
+                      <button type="button" aria-label="Check Contract Address">
+                        <ArrowUpRightIcon className="ml-2 h-5 w-5" />
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li className="flex flex-col py-3">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                      <img
+                        className="h-8 w-8 rounded-full"
+                        src="https://avatars.githubusercontent.com/u/2154886?s=40&v=4"
+                        alt="Contributor"
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="md:truncate text-sm font-normal text-gray-900 dark:text-white">
+                        <a href="#" className="font-semibold">
+                          @Evan_Kelly
+                        </a>{' '}
+                        made a contribution
+                      </p>
+                      <p className="md:truncate text-xs font-medium text-gray-500 dark:text-white">
+                        Tuesday, 23 Nov 2021 13:44:56
+                      </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                      <span>$10</span>
+                      <button type="button" aria-label="Check Contract Address">
+                        <ArrowUpRightIcon className="ml-2 h-5 w-5" />
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li className="flex flex-col py-3">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                      <img
+                        className="h-8 w-8 rounded-full"
+                        src="https://avatars.githubusercontent.com/u/2154886?s=40&v=4"
+                        alt="Contributor"
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="md:truncate text-sm font-normal text-gray-900 dark:text-white">
+                        <a href="#" className="font-semibold">
+                          @Evan_Kelly
+                        </a>{' '}
+                        made a contribution
+                      </p>
+                      <p className="md:truncate text-xs font-medium text-gray-500 dark:text-white">
+                        Tuesday, 23 Nov 2021 13:44:56
+                      </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                      <span>$10</span>
+                      <button type="button" aria-label="Check Contract Address">
+                        <ArrowUpRightIcon className="ml-2 h-5 w-5" />
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li className="flex flex-col py-3">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                      <img
+                        className="h-8 w-8 rounded-full"
+                        src="https://avatars.githubusercontent.com/u/2154886?s=40&v=4"
+                        alt="Contributor"
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="md:truncate text-sm font-normal text-gray-900 dark:text-white">
+                        <a href="#" className="font-semibold">
+                          @Evan_Kelly
+                        </a>{' '}
+                        made a contribution
+                      </p>
+                      <p className="md:truncate text-xs font-medium text-gray-500 dark:text-white">
+                        Tuesday, 23 Nov 2021 13:44:56
+                      </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                      <span>$10</span>
+                      <button type="button" aria-label="Check Contract Address">
+                        <ArrowUpRightIcon className="ml-2 h-5 w-5" />
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                <li className="flex flex-col pt-3">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex-shrink-0">
+                      <img
+                        className="h-8 w-8 rounded-full"
+                        src="https://avatars.githubusercontent.com/u/2154886?s=40&v=4"
+                        alt="Contributor"
+                      />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="md:truncate text-sm font-normal text-gray-900 dark:text-white">
+                        <a href="#" className="font-semibold">
+                          @Evan_Kelly
+                        </a>{' '}
+                        made a contribution
+                      </p>
+                      <p className="md:truncate text-xs font-medium text-gray-500 dark:text-white">
+                        Tuesday, 23 Nov 2021 13:44:56
+                      </p>
+                    </div>
+                    <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                      <span>$10</span>
+                      <button type="button" aria-label="Check Contract Address">
+                        <ArrowUpRightIcon className="ml-2 h-5 w-5" />
+                      </button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
