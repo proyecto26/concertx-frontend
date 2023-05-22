@@ -53,7 +53,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
             <Link
               to="/"
               aria-label="Home page"
-              className="flex flex-row items-center justify-center space-x-3 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
+              className="flex flex-row items-center justify-center gap-x-3 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
             >
               <h1 className="my-4 hidden text-center text-3xl font-bold lg:block">
                 {title}
