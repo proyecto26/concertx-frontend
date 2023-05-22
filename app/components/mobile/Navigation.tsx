@@ -62,7 +62,7 @@ export function MobileNavigation() {
               initial="closed"
               animate="open"
               exit="closed"
-              className="min-h-full w-full max-w-xs bg-white px-4 pt-3.5 pb-12 dark:bg-slate-900 sm:px-6"
+              className="min-h-full w-full max-w-xs bg-white px-4 pt-3 pb-12 dark:bg-slate-900 sm:px-6"
             >
               <div className="flex items-center">
                 <button
