@@ -87,7 +87,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
                 </a>
               </li>
             </ul>
-            {!isSearchFocused && (
+            {!isMobileSearchFocused && (
               <motion.button
                 key="open_search"
                 initial={{ scale: 0.8, opacity: 0 }}
