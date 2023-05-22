@@ -43,7 +43,7 @@ const avatarImg = 'https://avatars.githubusercontent.com/u/2154886?s=40&v=4'
 const HomePage: React.FC = () => {
   const navigate = useNavigate()
   return (
-    <section className="container mx-auto px-6 py-12 lg:px-14">
+    <section className="container mx-auto py-8 md:py-12 lg:px-14">
       <div className="flex flex-col rounded-xl bg-[#FAFAFA] md:flex-row">
         <div className="flex w-full items-center justify-center p-5 md:w-1/3 md:px-16">
           <Figure
@@ -138,12 +138,12 @@ const HomePage: React.FC = () => {
         </div>
       </div>
       <Pagination className="mt-3 flex justify-end" />
-      <section className="mt-20">
-        <div className="flex flex-row justify-between">
+      <section className="mt-20 px-5 md:px-0">
+        <div className="flex flex-row flex-wrap justify-between">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">
             Trending Events
           </h2>
-          <div className="relative flex flex-none flex-row items-center">
+          <div className="relative flex flex-none flex-row items-center ml-auto">
             <Categories />
             <a
               href="#"
@@ -155,7 +155,7 @@ const HomePage: React.FC = () => {
         </div>
         <ul
           role="list"
-          className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10"
+          className="mt-3 md:mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10"
         >
           {trendingEvents.map((event) => (
             <li key={event.name} className="mx-auto max-w-sm">
@@ -165,12 +165,12 @@ const HomePage: React.FC = () => {
         </ul>
       </section>
 
-      <section className="mt-20">
-        <div className="flex flex-row justify-between">
+      <section className="mt-20 px-5 md:px-0">
+        <div className="flex flex-row flex-wrap justify-between">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">
             Trending Artists
           </h2>
-          <div className="relative flex flex-none flex-row items-center">
+          <div className="relative flex flex-none flex-row items-center ml-auto">
             <a
               href="#"
               className="text-sm font-semibold leading-6 text-gray-900 md:text-base"
@@ -181,7 +181,7 @@ const HomePage: React.FC = () => {
         </div>
         <ul
           role="list"
-          className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8"
+          className="mt-3 md:mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8"
         >
           {trendingArtists.map((artist) => (
             <li
@@ -193,7 +193,7 @@ const HomePage: React.FC = () => {
                   img={avatarImg}
                   name="J.D Nicholls"
                   details="@jdnichollsc"
-                  className="flex-1"
+                  className="flex-1 w-full"
                 >
                   <div className="mt-4 divide-y divide-gray-300">
                     <p className="text-sm text-gray-900">

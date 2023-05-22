@@ -9,7 +9,7 @@ type LayoutProps = PropsWithChildren<{
 
 const Layout: React.FC<LayoutProps> = ({ children, title }) => {
   return (
-    <section className="min-h-screen flex flex-col">
+    <section className="min-h-screen flex flex-col overflow-hidden">
       <Header title={title} />
       <main className="flex-grow">
         {children}

@@ -4,9 +4,12 @@ import clsx from 'clsx';
 
 type SearchProps = {
   className?: string;
+  autoFocus?: boolean;
+  onFocus: () => void;
+  onBlur: () => void;
 };
 
-const Search: React.FC<SearchProps> = ({ className }) => {
+const Search: React.FC<SearchProps> = ({ className, autoFocus, onFocus, onBlur }) => {
   const searchId = useId();
   return (
     <form className={clsx('flex items-center', className)}>
@@ -23,6 +26,9 @@ const Search: React.FC<SearchProps> = ({ className }) => {
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-900 focus:border-gray-900 block w-full px-10 py-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-300 dark:focus:border-gray-300"
           placeholder="Search artists, event or venue"
           required
+          autoFocus={autoFocus}
+          onFocus={onFocus}
+          onBlur={onBlur}
         />
           <button
             type="button"
