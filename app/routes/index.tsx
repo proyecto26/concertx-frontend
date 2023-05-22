@@ -17,7 +17,7 @@ export const loader: LoaderFunction = ({ request }) => {
 
 export default function Index() {
   return (
-    <Layout title='TESTING'>
+    <Layout title="ConcertX">
       <HomePage />
     </Layout>
   );

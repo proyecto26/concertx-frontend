@@ -3,7 +3,7 @@ import LoveIcon from '~/components/icons/Love';
 
 export default function Index() {
   return (
-    <Layout>
+    <Layout title="ConcertX - Terms of Use">
       <section className="mt-10 container mx-auto px-6 py-12">
         <h1 className="text-3xl lg:text-6xl font-medium mb-8">Terms of Use</h1>
         <p className="text-base lg:text-lg mb-6">Welcome to ConcertX! These terms of use (the "Terms") govern your access to and use of our website, mobile app, and other online services (collectively, the "Services").</p>

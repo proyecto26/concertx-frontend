@@ -25,7 +25,7 @@ export default function Index() {
   )
   const truncatedTokenId = useTruncate('1', 5)
   return (
-    <Layout>
+    <Layout title="ConcertX - Event">
       <section className="container mx-auto px-5 lg:px-0">
         <motion.h1
           layout="position"
