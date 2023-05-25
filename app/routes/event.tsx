@@ -30,7 +30,7 @@ export default function Index() {
         <motion.h1
           layout="position"
           layoutId="event-title"
-          className="mt-5 text-3xl font-bold tracking-tight text-gray-900 md:text-2xl lg:text-3xl xl:text-5xl"
+          className="text-3xl font-bold tracking-tight text-gray-900 md:text-2xl lg:text-3xl xl:text-5xl"
         >
           Acoustical Sessions
         </motion.h1>
@@ -204,7 +204,7 @@ export default function Index() {
                   </p>
                 </div>
               </div>
-              <div className="mt-5 flex flex-row flex-wrap items-end justify-between gap-y-3">
+              <div className="mt-5 flex flex-row flex-wrap xl:flex-nowrap items-end justify-between gap-3">
                 <p>
                   <strong className="font-semibold">Total Goal</strong>: 250 /
                   $2022.00
