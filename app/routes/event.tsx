@@ -26,11 +26,11 @@ export default function Index() {
   const truncatedTokenId = useTruncate('1', 5)
   return (
     <Layout title="ConcertX - Event">
-      <section className="container mx-auto px-5 lg:px-0">
+      <section className="container mx-auto px-5 py-8 md:py-12 lg:px-14">
         <motion.h1
           layout="position"
           layoutId="event-title"
-          className="mt-10 text-3xl font-bold tracking-tight text-gray-900 md:text-2xl lg:text-3xl xl:text-5xl"
+          className="mt-5 text-3xl font-bold tracking-tight text-gray-900 md:text-2xl lg:text-3xl xl:text-5xl"
         >
           Acoustical Sessions
         </motion.h1>
