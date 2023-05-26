@@ -1,46 +1,58 @@
 import clsx from 'clsx'
-import React, { PropsWithChildren } from 'react'
+import {
+  HTMLAttributes,
+  PropsWithChildren,
+  forwardRef,
+} from 'react'
 
-type AvatarProps = PropsWithChildren & {
+import { useForwardedRef } from '~/hooks'
+
+type AvatarProps = PropsWithChildren<HTMLAttributes<HTMLDivElement>> & {
   img: string
   name: string
-  href?: string
   alt?: string
   details?: string
-  className?: string
+  href?: string
 }
 
-const Avatar: React.FC<AvatarProps> = ({
-  children,
-  img,
-  name,
-  href,
-  alt,
-  details,
-  className,
-}) => {
-  return (
-    <a href={href ?? '#'} className={clsx('group block pt-3', className)}>
-      <div className="flex items-start">
-        <div className="flex-none">
-          <img
-            className="inline-block h-9 w-9 rounded-full"
-            src={img}
-            alt={alt ?? 'Avatar'}
-          />
-        </div>
-        <div className="ml-3 flex-1">
-          <p className="text-base font-semibold text-gray-900">{name}</p>
-          {details && (
-            <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-              {details}
-            </p>
-          )}
-          {children}
-        </div>
+const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
+  ({ children, img, name, href, alt, details, className, ...rest }, ref) => {
+    const innerRef = useForwardedRef<HTMLDivElement>(ref)
+    const link = href ?? '#'
+    return (
+      <div
+        className={clsx('flex items-start gap-3 pt-3', className)}
+        ref={innerRef}
+        {...rest}
+      >
+          <a href={link} className="flex-none hidden md:block">
+            <img
+              className="inline-block h-9 w-9 rounded-full"
+              src={img}
+              alt={alt ?? 'Avatar'}
+            />
+          </a>
+          <div className="flex-1">
+            <a href={link} className="flex flex-row gap-3">
+              <img
+                className="inline-block h-9 w-9 rounded-full md:hidden"
+                src={img}
+                alt={alt ?? 'Avatar'}
+              />
+              <div>
+              <p className="text-base font-semibold text-gray-900">{name}</p>
+              {details && (
+                <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
+                  {details}
+                </p>
+              )}
+              </div>
+            </a>
+            {children}
+          </div>
       </div>
-    </a>
-  )
-}
+    )
+  }
+)
 
 export default Avatar
