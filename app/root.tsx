@@ -112,7 +112,7 @@ function App({ csrf }: AppProps) {
           <Meta />
           <meta
             name="color-scheme"
-            content={theme === 'light' ? 'light dark' : 'dark light'}
+            content={theme === 'dark' ? 'dark light' : 'light dark'}
           />
           <Links />
           <ThemeScript theme={theme as THEME} />

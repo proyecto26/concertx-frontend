@@ -38,7 +38,7 @@ export type ThemeScriptProps = {
 }
 
 const ThemeScript: React.FC<ThemeScriptProps> = ({ theme }) => {
-  return theme && <script dangerouslySetInnerHTML={{ __html: clientScripts }} />
+  return !!theme && <script dangerouslySetInnerHTML={{ __html: clientScripts }} />
 }
 
 export default ThemeScript
