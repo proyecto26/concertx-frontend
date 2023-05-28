@@ -22,7 +22,7 @@ import { getGlobalSession } from '~/cookies/session.server'
 import { getAuthSession } from '~/cookies/auth.server'
 import { getEnv } from '~/env.server'
 import { getGlobalMetaTags } from '~/config/seo'
-import { ClientScript, useTheme, withThemeProvider } from '~/theme'
+import { ThemeScript, useTheme, withThemeProvider } from '~/theme'
 import { getThemeSession } from './theme/theme.server'
 
 export let links: LinksFunction = () => {
@@ -93,7 +93,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 }
 
 type AppProps = {
-  csrf: string;
+  csrf: string
 }
 
 function App({ csrf }: AppProps) {
@@ -115,7 +115,7 @@ function App({ csrf }: AppProps) {
             content={theme === 'light' ? 'light dark' : 'dark light'}
           />
           <Links />
-          <ClientScript theme={theme as THEME} />
+          <ThemeScript theme={theme as THEME} />
         </head>
         <body className="h-full bg-light font-sans leading-normal tracking-normal">
           <Outlet />
@@ -132,7 +132,5 @@ const AppWithTheme = withThemeProvider(App)
 
 export default function () {
   const { csrf, theme } = useLoaderData<LoaderData>()
-  return (
-    <AppWithTheme specifiedTheme={theme as THEME} csrf={csrf} />
-  )
+  return <AppWithTheme specifiedTheme={theme as THEME} csrf={csrf} />
 }

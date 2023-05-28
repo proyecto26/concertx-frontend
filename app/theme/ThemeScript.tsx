@@ -33,12 +33,12 @@ const clientScripts = `
     }
   })();`
 
-export type ClientScriptProps = {
+export type ThemeScriptProps = {
   theme: THEME;
 }
 
-const ClientScript: React.FC<ClientScriptProps> = ({ theme }) => {
+const ThemeScript: React.FC<ThemeScriptProps> = ({ theme }) => {
   return theme && <script dangerouslySetInnerHTML={{ __html: clientScripts }} />
 }
 
-export default ClientScript
+export default ThemeScript
