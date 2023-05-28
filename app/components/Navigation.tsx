@@ -1,14 +1,14 @@
-import { Link, useLocation } from '@remix-run/react';
-import clsx from 'clsx';
+import { Link, useLocation } from '@remix-run/react'
+import clsx from 'clsx'
 
-import { NAVIGATION } from '~/constants/navigation';
+import { NAVIGATION } from '~/constants'
 
 export type NavigationProps = {
-  className?: string;
-};
+  className?: string
+}
 
 export const Navigation: React.FC<NavigationProps> = ({ className }) => {
-  const location = useLocation();
+  const location = useLocation()
 
   return (
     <nav className={clsx('text-base lg:text-sm', className)}>

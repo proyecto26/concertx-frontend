@@ -40,9 +40,9 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
                 alt={alt ?? 'Avatar'}
               />
               <div>
-              <p className="text-base font-semibold text-gray-900">{name}</p>
+              <p className="text-base font-semibold text-dark-gray dark:text-dark">{name}</p>
               {details && (
-                <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
+                <p className="text-xs font-medium text-gray-500 dark:text-medium group-hover:text-gray-700">
                   {details}
                 </p>
               )}

@@ -1,4 +1,5 @@
 import isEmpty from 'lodash/isEmpty';
+
 import { getAccessTokenOrRedirect } from './auth.server';
 
 const DEFAULT_TIMEOUT = 4000;

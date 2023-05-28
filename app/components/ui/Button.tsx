@@ -12,7 +12,7 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       className={clsx(
-        'text-sm text-white md:text-base flex-shrink-0 rounded-md border-4 border-dark-gray bg-dark-gray py-2 px-5 hover:border-gray-800 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2',
+        'text-sm text-white md:text-base flex-shrink-0 rounded-md border-4 border-dark-gray bg-dark-gray dark:border-primary dark:bg-primary py-2 px-5 hover:border-gray-800 hover:bg-gray-800 dark:hover:border-primary-tint dark:hover:bg-primary-tint focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2',
         className
       )}
       type={type ?? 'button'}

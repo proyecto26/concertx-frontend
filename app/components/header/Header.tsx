@@ -9,6 +9,7 @@ import { useScroll } from '~/hooks'
 import { MobileNavigation } from '../mobile/Navigation'
 import Search from '../search/Search'
 import Button from '../ui/Button'
+import ThemeButton from '../ui/ThemeButton'
 
 type HeaderProps = {
   title?: string
@@ -39,7 +40,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
       <header
         ref={headerRef}
         className={clsx(
-          'sticky top-0 z-50 flex flex-wrap items-center justify-between bg-white px-4 py-1 shadow-md shadow-slate-900/5 transition duration-500 dark:shadow-none sm:px-6 lg:px-8',
+          'sticky top-0 z-50 flex flex-wrap items-center justify-between bg-primary-contrast px-4 py-1 shadow-md shadow-slate-900/5 transition duration-500 dark:shadow-none sm:px-6 lg:px-8',
           isScrolled
             ? 'dark:bg-slate-900/95 dark:backdrop-blur dark:[@supports(backdrop-filter:blur(0))]:bg-slate-900/75'
             : 'dark:bg-transparent'
@@ -55,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
               aria-label="Home page"
               className="flex flex-row items-center justify-center gap-x-3 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
             >
-              <h1 className="my-4 hidden text-center text-3xl font-bold lg:block">
+              <h1 className="my-4 hidden text-center text-3xl font-bold lg:block text-dark-gray dark:text-dark">
                 {title}
               </h1>
               <img
@@ -72,7 +73,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
             <ul className="list-reset hidden flex-1 items-center justify-end xl:flex">
               <li className="mr-3">
                 <a
-                  className="inline-block py-2 px-4 text-gray-800 no-underline"
+                  className="inline-block py-2 px-4 text-gray-800 dark:text-dark no-underline"
                   href="#"
                 >
                   Artists
@@ -80,7 +81,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
               </li>
               <li className="mr-3">
                 <a
-                  className="inline-block py-2 px-4 text-gray-800 no-underline"
+                  className="inline-block py-2 px-4 text-gray-800 dark:text-dark no-underline"
                   href="#"
                 >
                   Events
@@ -95,9 +96,9 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
                 transition={{ type: 'spring' }}
                 onClick={openMobileSearch}
                 type="button"
-                className="inline-flex flex-shrink-0 items-center rounded-full border border-transparent p-2.5 text-black shadow-sm focus:outline-none md:hidden"
+                className="inline-flex flex-shrink-0 items-center p-2.5 focus:outline-none md:hidden"
               >
-                <MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
+                <MagnifyingGlassIcon className="h-5 w-5 text-black dark:text-dark" aria-hidden="true" />
                 <span className="sr-only">Open Search</span>
               </motion.button>
             )}
@@ -112,10 +113,12 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
                 alt="Wallet"
                 aria-hidden="true"
                 src="/assets/wallet_icon.svg"
-                className="h-7 w-7 fill-slate-700"
+                className="h-7 w-7 fill-slate-700 dark:invert"
               />
               <span className="sr-only">Connect Wallet</span>
             </button>
+
+            <ThemeButton />
           </div>
         </div>
         {isMobileSearchFocused && (
@@ -139,7 +142,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
             <button
               onClick={onCloseSearch}
               type="button"
-              className="inline-flex flex-none flex-shrink-0 items-center rounded-full border border-transparent p-2 text-black shadow-sm focus:outline-none"
+              className="inline-flex flex-none flex-shrink-0 items-center p-2 text-black focus:outline-none"
             >
               <XMarkIcon className="h-7 w-7" aria-hidden="true" />
               <span className="sr-only">Close Search</span>
@@ -153,7 +156,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-40 bg-black bg-opacity-75 transition-opacity"
+          className="fixed inset-0 z-40 bg-black dark:bg-slate-900/95 dark:backdrop-blur dark:[@supports(backdrop-filter:blur(0))]:bg-slate-900/75 bg-opacity-75 dark:bg-opacity-40 transition-opacity"
         />
       )}
     </AnimatePresence>

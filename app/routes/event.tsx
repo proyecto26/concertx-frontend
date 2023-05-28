@@ -25,19 +25,19 @@ export default function Index() {
   )
   const truncatedTokenId = useTruncate('1', 5)
   return (
-    <Layout title="ConcertX - Event">
+    <Layout title="Event Details">
       <section className="container mx-auto px-5 py-8 md:py-12 lg:px-14">
         <motion.h1
           layout="position"
           layoutId="event-title"
-          className="text-3xl font-bold tracking-tight text-gray-900 md:text-2xl lg:text-3xl xl:text-5xl"
+          className="text-3xl font-bold tracking-tight text-dark-gray dark:text-dark md:text-2xl lg:text-3xl xl:text-5xl"
         >
           Acoustical Sessions
         </motion.h1>
         <motion.p
           layout="position"
           layoutId="event-subtitle"
-          className="mt-2 text-sm font-medium text-gray-500 group-hover:text-gray-700"
+          className="mt-2 text-sm font-medium text-gray-500 dark:text-medium group-hover:text-gray-700"
         >
           Online Event
         </motion.p>
@@ -55,7 +55,7 @@ export default function Index() {
             <motion.p
               layout="position"
               layoutId="event-description"
-              className="mt-6 text-sm font-normal text-gray-900"
+              className="mt-6 text-sm font-normal text-dark-gray dark:text-dark"
             >
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
@@ -71,31 +71,31 @@ export default function Index() {
             <div className="mt-3 flex flex-row">
               <button
                 type="button"
-                className="inline-flex items-center gap-x-1.5 rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:ring-gray-900"
+                className="inline-flex items-center gap-x-1.5 rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-dark-gray dark:text-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:ring-gray-900"
               >
                 <EyeIcon className="-mr-0.5 h-5 w-5" aria-hidden="true" />
                 200 Views
               </button>
               <button
                 type="button"
-                className="inline-flex items-center gap-x-1.5 rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:ring-gray-900"
+                className="inline-flex items-center gap-x-1.5 rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-dark-gray dark:text-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:ring-gray-900"
               >
                 <HeartIcon className="-mr-0.5 h-5 w-5" aria-hidden="true" />
                 226 Likes
               </button>
               <button
                 type="button"
-                className="inline-flex items-center gap-x-1.5 rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:ring-gray-900"
+                className="inline-flex items-center gap-x-1.5 rounded-md bg-transparent px-3 py-2 text-sm font-semibold text-dark-gray dark:text-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:ring-gray-900"
               >
                 <ShareIcon className="-mr-0.5 h-5 w-5" aria-hidden="true" />
                 Share
               </button>
             </div>
             <div className="mt-5 flex flex-col border border-gray-300 bg-white px-4 py-5 dark:border-gray-700 dark:bg-gray-800 sm:rounded-lg sm:px-6">
-              <h2 className="text-sm font-semibold uppercase text-gray-900">
+              <h2 className="text-sm font-semibold uppercase text-dark-gray dark:text-dark">
                 NFT Details
               </h2>
-              <ul className="mt-5 w-full divide-y divide-gray-200 text-gray-900 dark:divide-gray-700 dark:text-white">
+              <ul className="mt-5 w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <li className="flex flex-col pb-3">
                   <div className="flex items-center space-x-4">
                     <div className="min-w-0 flex-1">
@@ -185,27 +185,27 @@ export default function Index() {
             <div className="flex flex-col border border-gray-300 bg-white px-4 py-5 dark:border-gray-700 dark:bg-gray-800 sm:rounded-lg sm:px-6">
               <div className="flex max-w-2xl flex-col divide-y divide-gray-300 lg:flex-row lg:divide-y-0 lg:divide-x">
                 <div className="py-5 lg:py-0 lg:px-5 xl:px-10 first:pl-0 first:pt-0">
-                  <h2 className="text-sm font-semibold uppercase text-gray-900">
+                  <h2 className="text-sm font-semibold uppercase text-dark-gray dark:text-dark">
                     Total Raised
                   </h2>
-                  <p className="mt-4 text-2xl font-bold tracking-tight text-gray-900">
+                  <p className="mt-4 text-2xl font-bold tracking-tight text-dark-gray dark:text-dark">
                     40
                   </p>
-                  <p className="mt-1 text-sm font-normal tracking-tight text-gray-600">
+                  <p className="mt-1 text-sm font-normal tracking-tight text-gray-600 dark:text-medium">
                     $369,99
                   </p>
                 </div>
                 <div className="py-5 lg:py-0 lg:px-5 xl:px-10">
-                  <h2 className="text-sm font-semibold uppercase text-gray-900">
+                  <h2 className="text-sm font-semibold uppercase text-dark-gray dark:text-dark">
                     Ending
                   </h2>
-                  <p className="mt-4 text-2xl font-bold tracking-tight text-gray-900">
+                  <p className="mt-4 text-2xl font-bold tracking-tight text-dark-gray dark:text-dark">
                     20h 49m 24s
                   </p>
                 </div>
               </div>
               <div className="mt-5 flex flex-row flex-wrap xl:flex-nowrap items-end justify-between gap-3">
-                <p>
+                <p className="text-dark-gray dark:text-dark">
                   <strong className="font-semibold">Total Goal</strong>: 250 /
                   $2022.00
                 </p>
@@ -215,10 +215,10 @@ export default function Index() {
               </div>
             </div>
             <div className="mt-5 flex flex-col border border-gray-300 bg-white px-4 py-5 dark:border-gray-700 dark:bg-gray-800 sm:rounded-lg sm:px-6">
-              <h2 className="text-sm font-semibold uppercase text-gray-900">
+              <h2 className="text-sm font-semibold uppercase text-dark-gray dark:text-dark">
                 History
               </h2>
-              <ul className="mt-5 w-full divide-y divide-gray-200 text-gray-900 dark:divide-gray-700 dark:text-white">
+              <ul className="mt-5 w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <li className="flex flex-col pb-3">
                   <div className="flex items-center space-x-4">
                     <div className="flex-shrink-0">

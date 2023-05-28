@@ -44,7 +44,7 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate()
   return (
     <section className="container mx-auto py-8 md:py-12 lg:px-14">
-      <div className="flex flex-col rounded-xl bg-[#FAFAFA] md:flex-row">
+      <div className="flex flex-col rounded-xl bg-[#FAFAFA] dark:border-gray-700 dark:bg-gray-800 md:flex-row">
         <div className="flex w-full items-center justify-center p-5 md:w-1/3 md:px-16">
           <Figure
             imgSrc="/assets/welcome.png"
@@ -66,7 +66,7 @@ const HomePage: React.FC = () => {
             layout="position"
             layoutId="event-title"
             initial={false}
-            className="mt-5 text-3xl font-bold tracking-tight text-gray-900 md:text-2xl lg:text-3xl xl:text-5xl"
+            className="mt-5 text-3xl font-bold tracking-tight text-dark-gray dark:text-dark md:text-2xl lg:text-3xl xl:text-5xl"
           >
             Acoustical Sessions
           </motion.h1>
@@ -80,7 +80,7 @@ const HomePage: React.FC = () => {
           <motion.p
             layout="position"
             layoutId="event-description"
-            className="mt-6 text-sm font-normal text-gray-900"
+            className="mt-6 text-sm font-normal text-dark-gray dark:text-dark"
           >
             Lorem Ipsum is simply dummy text of the printing and typesetting
             industry. Lorem Ipsum has been the industry's standard dummy text
@@ -99,32 +99,32 @@ const HomePage: React.FC = () => {
           </div>
           <div className="mt-10 flex max-w-2xl flex-col divide-y divide-gray-300 lg:flex-row lg:divide-y-0 lg:divide-x">
             <div className="py-5 lg:py-0 lg:px-5 xl:px-10 first:pl-0 first:pt-0">
-              <h2 className="text-sm font-semibold uppercase text-gray-900">
+              <h2 className="text-sm font-semibold uppercase text-dark-gray dark:text-dark">
                 Total Raised
               </h2>
-              <p className="mt-4 text-3xl font-bold tracking-tight text-gray-900">
+              <p className="mt-4 text-3xl font-bold tracking-tight text-dark-gray dark:text-dark">
                 40
               </p>
-              <p className="mt-1 text-sm font-normal tracking-tight text-gray-600">
+              <p className="mt-1 text-sm font-normal tracking-tight text-gray-600 dark:text-medium">
                 $369,99
               </p>
             </div>
             <div className="py-5 lg:py-0 lg:px-5 xl:px-10">
-              <h2 className="text-sm font-semibold uppercase text-gray-900">
+              <h2 className="text-sm font-semibold uppercase text-dark-gray dark:text-dark">
                 Total Goal
               </h2>
-              <p className="mt-4 text-3xl font-bold tracking-tight text-gray-900">
+              <p className="mt-4 text-3xl font-bold tracking-tight text-dark-gray dark:text-dark">
                 40
               </p>
-              <p className="mt-1 text-sm font-normal tracking-tight text-gray-600">
+              <p className="mt-1 text-sm font-normal tracking-tight text-gray-600 dark:text-medium">
                 $369,99
               </p>
             </div>
             <div className="py-5 lg:py-0 lg:px-5 xl:px-10">
-              <h2 className="text-sm font-semibold uppercase text-gray-900">
+              <h2 className="text-sm font-semibold uppercase text-dark-gray dark:text-dark">
                 Ending
               </h2>
-              <p className="mt-4 text-3xl font-bold tracking-tight text-gray-900">
+              <p className="mt-4 text-3xl font-bold tracking-tight text-dark-gray dark:text-dark">
                 20h 49m 24s
               </p>
             </div>
@@ -140,14 +140,14 @@ const HomePage: React.FC = () => {
       <Pagination className="mt-3 flex justify-end" />
       <section className="mt-20 px-5 md:px-0">
         <div className="flex flex-row flex-wrap justify-between">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900">
+          <h2 className="text-3xl font-bold tracking-tight text-dark-gray dark:text-dark">
             Trending Events
           </h2>
-          <div className="relative flex flex-none flex-row items-center ml-auto">
+          <div className="relative flex flex-none flex-row items-baseline ml-auto gap-2">
             <Categories />
             <a
               href="#"
-              className="text-sm font-semibold leading-6 text-gray-900 md:text-base"
+              className="h-full text-sm font-semibold leading-6 text-dark-gray dark:text-dark md:text-base"
             >
               View all <span aria-hidden="true">→</span>
             </a>
@@ -167,13 +167,13 @@ const HomePage: React.FC = () => {
 
       <section className="mt-20 px-5 md:px-0">
         <div className="flex flex-row flex-wrap justify-between">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900">
+          <h2 className="text-3xl font-bold tracking-tight text-dark-gray dark:text-dark">
             Trending Artists
           </h2>
           <div className="relative flex flex-none flex-row items-center ml-auto">
             <a
               href="#"
-              className="text-sm font-semibold leading-6 text-gray-900 md:text-base"
+              className="text-sm font-semibold leading-6 text-dark-gray dark:text-dark md:text-base"
             >
               View all <span aria-hidden="true">→</span>
             </a>
@@ -196,34 +196,34 @@ const HomePage: React.FC = () => {
                   className="flex-1 w-full"
                 >
                   <div className="mt-4 divide-y divide-gray-300">
-                    <p className="text-sm text-gray-900">
+                    <p className="text-sm text-dark-gray dark:text-dark">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit
                       quam corrupti consectetur.
                     </p>
                     <div className="mt-4 flex flex-row gap-5 pt-4 xl:gap-10">
                       <div className="flex-none">
-                        <h2 className="text-xs font-semibold uppercase text-gray-900">
+                        <h2 className="text-xs font-semibold uppercase text-dark-gray dark:text-dark">
                           Category
                         </h2>
-                        <p className="mt-1 text-xs font-normal tracking-tight text-gray-600">
+                        <p className="mt-1 text-xs font-normal tracking-tight text-gray-600 dark:text-medium">
                           #Rock
                         </p>
                       </div>
                       <div className="flex-none">
-                        <h2 className="text-xs font-semibold uppercase text-gray-900">
+                        <h2 className="text-xs font-semibold uppercase text-dark-gray dark:text-dark">
                           Followers
                         </h2>
-                        <p className="mt-1 text-xs font-normal tracking-tight text-gray-600">
+                        <p className="mt-1 text-xs font-normal tracking-tight text-gray-600 dark:text-medium">
                           26
                         </p>
                       </div>
                       <div className="flex flex-1 justify-end">
-                        <button
-                          type="button"
-                          className="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                        <Button
+                          className="px-3.5 py-2.5"
+                          onClick={() => navigate('/artist')}
                         >
                           Follow
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   </div>
