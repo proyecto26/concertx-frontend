@@ -44,15 +44,15 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate()
   return (
     <section className="container mx-auto py-8 md:py-12 lg:px-14">
-      <div className="flex flex-col rounded-xl bg-[#FAFAFA] dark:border-gray-700 dark:bg-gray-800 md:flex-row">
-        <div className="flex w-full items-center justify-center p-5 md:w-1/3 md:px-16">
+      <div className="flex flex-col rounded-xl bg-[#FAFAFA] dark:border-gray-700 dark:bg-slate-900 lg:flex-row">
+        <div className="flex items-center justify-center p-5 lg:w-1/3 md:px-16 md:-ml-10 lg:-ml-20">
           <Figure
             imgSrc="/assets/welcome.png"
             imgAlt="ConcertX"
             imgClass="h-auto min-w-[250px] max-w-full md:min-w-[320px] xl:min-w-[460px]"
           />
         </div>
-        <div className="ml-0 flex w-full flex-col p-5 md:ml-5 md:flex-1 md:p-10">
+        <div className="ml-0 flex-1 flex w-full flex-col p-5 md:ml-5 lg:p-10">
           <MotionAvatar
             variants={transitionVariants}
             initial="fadeOut"
@@ -186,7 +186,7 @@ const HomePage: React.FC = () => {
           {trendingArtists.map((artist) => (
             <li
               key={artist.name}
-              className="border border-gray-300 bg-white px-4 py-5 dark:border-gray-700 dark:bg-gray-800 sm:rounded-lg sm:px-6"
+              className="border border-gray-300 bg-white px-4 py-5 dark:border-gray-700 dark:bg-slate-900 sm:rounded-lg sm:px-6"
             >
               <div className="flex flex-wrap items-center justify-between sm:flex-nowrap">
                 <Avatar

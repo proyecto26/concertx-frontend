@@ -142,9 +142,9 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
             <button
               onClick={onCloseSearch}
               type="button"
-              className="inline-flex flex-none flex-shrink-0 items-center p-2 text-black focus:outline-none"
+              className="inline-flex flex-none flex-shrink-0 items-center p-2 focus:outline-none"
             >
-              <XMarkIcon className="h-7 w-7" aria-hidden="true" />
+              <XMarkIcon className="h-7 w-7 text-dark-gray dark:text-dark" aria-hidden="true" />
               <span className="sr-only">Close Search</span>
             </button>
           </motion.div>

@@ -23,7 +23,7 @@ const Search: React.FC<SearchProps> = ({ className, autoFocus, onFocus, onBlur }
         <input
           type="text"
           id={searchId}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-900 focus:border-gray-900 block w-full px-10 py-2.5 dark:border-gray-700 dark:bg-gray-800 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-300 dark:focus:border-gray-300"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-900 focus:border-gray-900 block w-full px-10 py-2.5 dark:border-gray-700 dark:bg-slate-900 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-300 dark:focus:border-gray-300"
           placeholder="Search artists, event or venue"
           required
           autoFocus={autoFocus}
@@ -35,7 +35,7 @@ const Search: React.FC<SearchProps> = ({ className, autoFocus, onFocus, onBlur }
             className="absolute inset-y-0 right-0 flex items-center px-3 focus:ring-offset-2"
             aria-label="Click to speak your search terms"
           >
-            <MicrophoneIcon className="w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white" />
+            <MicrophoneIcon className="w-4 h-4 text-gray-500 dark:text-dark hover:text-gray-900 dark:hover:text-white" />
           </button>
       </div>
     </form>

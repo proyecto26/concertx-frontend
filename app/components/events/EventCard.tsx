@@ -13,7 +13,7 @@ const EventCard: React.FC<EventCardProps> = ({
   avatarImg,
 }) => {
   return (
-    <article className="rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+    <article className="rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-slate-900">
       <a href="#">
         <img className="rounded-t-lg" src="/assets/welcome.png" alt="Event Image" />
       </a>

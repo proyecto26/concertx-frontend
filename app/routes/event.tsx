@@ -91,7 +91,7 @@ export default function Index() {
                 Share
               </button>
             </div>
-            <div className="mt-5 flex flex-col border border-gray-300 bg-white px-4 py-5 dark:border-gray-700 dark:bg-gray-800 sm:rounded-lg sm:px-6">
+            <div className="mt-5 flex flex-col border border-gray-300 bg-white px-4 py-5 dark:border-gray-700 dark:bg-slate-900 sm:rounded-lg sm:px-6">
               <h2 className="text-sm font-semibold uppercase text-dark-gray dark:text-dark">
                 NFT Details
               </h2>
@@ -182,7 +182,7 @@ export default function Index() {
             />
           </div>
           <div className="mt-10 flex flex-col lg:mt-0">
-            <div className="flex flex-col border border-gray-300 bg-white px-4 py-5 dark:border-gray-700 dark:bg-gray-800 sm:rounded-lg sm:px-6">
+            <div className="flex flex-col border border-gray-300 bg-white px-4 py-5 dark:border-gray-700 dark:bg-slate-900 sm:rounded-lg sm:px-6">
               <div className="flex max-w-2xl flex-col divide-y divide-gray-300 lg:flex-row lg:divide-y-0 lg:divide-x">
                 <div className="py-5 lg:py-0 lg:px-5 xl:px-10 first:pl-0 first:pt-0">
                   <h2 className="text-sm font-semibold uppercase text-dark-gray dark:text-dark">
@@ -214,7 +214,7 @@ export default function Index() {
                 </Button>
               </div>
             </div>
-            <div className="mt-5 flex flex-col border border-gray-300 bg-white px-4 py-5 dark:border-gray-700 dark:bg-gray-800 sm:rounded-lg sm:px-6">
+            <div className="mt-5 flex flex-col border border-gray-300 bg-white px-4 py-5 dark:border-gray-700 dark:bg-slate-900 sm:rounded-lg sm:px-6">
               <h2 className="text-sm font-semibold uppercase text-dark-gray dark:text-dark">
                 History
               </h2>
