@@ -41,7 +41,7 @@ const Footer: React.FC<FooterProps> = () => {
               Terms of Use
             </NavLink>
           </div>
-          <div className="mt-5 md:mt-0 md:ml-4 flex flex-row gap-4">
+          <div className="mt-8 md:mt-0 md:ml-4 flex flex-row gap-4">
             {navigation.map((item) => (
               <a
                 key={item.label}
