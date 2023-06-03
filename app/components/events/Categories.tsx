@@ -25,12 +25,14 @@ const Categories: React.FC<CategoriesProps> = ({
   return (
     <div className="w-40">
       <Listbox value={selected} onChange={setSelected}>
-        <div className="relative mt-1">
-          <Listbox.Button className="relative w-full cursor-default bg-white py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 font-semibold text-sm md:text-base">
-            <span className="block truncate">{selected ? selected.name : 'All categories'}</span>
-            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+        <div className="relative text-dark-gray dark:text-dark">
+          <Listbox.Button className="relative w-full cursor-pointer py-2 pl-3 pr-5 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 font-semibold text-sm md:text-base">
+            <span className="block truncate">
+              {selected?.name ?? 'All categories'}
+            </span>
+            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-5">
               <ChevronDownIcon
-                className="h-5 w-5 text-gray-900"
+                className="h-5 w-5"
                 aria-hidden="true"
               />
             </span>

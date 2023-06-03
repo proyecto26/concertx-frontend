@@ -1,5 +1,5 @@
 /*
-  Framer Motion Animations, Transitions, and Variants definitions
+ * Framer Motion Animations, Transitions, and Variants definitions
  */
 
 export const transitions = {
