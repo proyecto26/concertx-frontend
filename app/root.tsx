@@ -24,6 +24,9 @@ import { getEnv } from '~/env.server'
 import { getGlobalMetaTags } from '~/config/seo'
 import { ThemeScript, useTheme, withThemeProvider } from '~/theme'
 import { getThemeSession } from './theme/theme.server'
+import { withSolanaWalletConnection } from './hocs'
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base'
+import { withQueryClientProvider } from './utils/query'
 
 export let links: LinksFunction = () => {
   return [
@@ -128,9 +131,19 @@ function App({ csrf }: AppProps) {
   )
 }
 
-const AppWithTheme = withThemeProvider(App)
+const AppWithProviders = withQueryClientProvider(
+  withSolanaWalletConnection(
+    withThemeProvider(App)
+  )
+)
 
 export default function () {
   const { csrf, theme } = useLoaderData<LoaderData>()
-  return <AppWithTheme specifiedTheme={theme as THEME} csrf={csrf} />
+  return (
+    <AppWithProviders
+      solanaNetwork={WalletAdapterNetwork.Devnet}
+      specifiedTheme={theme as THEME}
+      csrf={csrf}
+    />
+  )
 }

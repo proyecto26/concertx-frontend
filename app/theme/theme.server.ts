@@ -6,7 +6,7 @@ import { isTheme } from './utils'
 
 const themeStorage = createCookieSessionStorage({
   cookie: {
-    name: 'my_remix_theme',
+    name: '__theme',
     secure: true,
     secrets: [sessionSecret],
     sameSite: 'lax',

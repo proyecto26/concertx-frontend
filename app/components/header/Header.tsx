@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 import useOnclickOutside from 'react-cool-onclickoutside'
 
 import { useScroll } from '~/hooks'
+import { useSolanaWallet } from '~/hooks/useSolanaWallet'
 import { MobileNavigation } from '../mobile/Navigation'
 import Search from '../search/Search'
 import Button from '../ui/Button'
@@ -16,6 +17,14 @@ type HeaderProps = {
 }
 
 const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
+  const {
+    error: walletError,
+    connected,
+    messageSignature,
+    onClickConnect,
+    onSignMessage,
+    publicKey,
+  } = useSolanaWallet()
   const { isScrolled } = useScroll()
   const [isSearchFocused, setSearchFocused] = useState(false)
   const [isMobileSearchFocused, setMobileSearchFocused] = useState(false)
@@ -40,7 +49,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
       <header
         ref={headerRef}
         className={clsx(
-          'sticky top-0 z-50 flex flex-wrap items-center justify-between bg-primary-contrast px-4 py-1 shadow-md dark:shadow-2xl shadow-slate-900/5 transition duration-500 sm:px-6 lg:px-8',
+          'sticky top-0 z-50 flex flex-wrap items-center justify-between bg-primary-contrast px-4 py-1 shadow-md shadow-slate-900/5 transition duration-500 dark:shadow-2xl sm:px-6 lg:px-8',
           isScrolled
             ? 'dark:bg-slate-900/95 dark:backdrop-blur dark:[@supports(backdrop-filter:blur(0))]:bg-slate-900/75'
             : 'dark:bg-transparent'
@@ -56,7 +65,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
               aria-label="Home page"
               className="flex flex-row items-center justify-center gap-x-3 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"
             >
-              <h1 className="my-4 hidden text-center text-3xl font-bold lg:block text-dark-gray dark:text-dark">
+              <h1 className="my-4 hidden text-center text-3xl font-bold text-dark-gray dark:text-dark lg:block">
                 {title}
               </h1>
               <img
@@ -73,7 +82,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
             <ul className="list-reset hidden flex-1 items-center justify-end xl:flex">
               <li className="mr-3">
                 <a
-                  className="inline-block py-2 px-4 text-gray-800 dark:text-dark no-underline"
+                  className="inline-block px-4 py-2 text-gray-800 no-underline dark:text-dark"
                   href="#"
                 >
                   Artists
@@ -81,7 +90,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
               </li>
               <li className="mr-3">
                 <a
-                  className="inline-block py-2 px-4 text-gray-800 dark:text-dark no-underline"
+                  className="inline-block px-4 py-2 text-gray-800 no-underline dark:text-dark"
                   href="#"
                 >
                   Events
@@ -98,16 +107,20 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
                 type="button"
                 className="inline-flex flex-shrink-0 items-center p-2.5 focus:outline-none md:hidden"
               >
-                <MagnifyingGlassIcon className="h-5 w-5 text-black dark:text-dark" aria-hidden="true" />
+                <MagnifyingGlassIcon
+                  className="h-5 w-5 text-black dark:text-dark"
+                  aria-hidden="true"
+                />
                 <span className="sr-only">Open Search</span>
               </motion.button>
             )}
-            <Button className="hidden md:block">
+            <Button onClick={onClickConnect} className="hidden md:block">
               Connect Wallet
             </Button>
             <button
               type="button"
               className="inline-flex flex-shrink-0 items-center p-2.5 text-center text-sm font-medium focus:outline-none md:hidden"
+              onClick={onClickConnect}
             >
               <img
                 alt="Wallet"
@@ -126,7 +139,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
             key="search"
             initial="collapsed"
             animate="open"
-            className="flex flex-row flex-1 md:hidden"
+            className="flex flex-1 flex-row md:hidden"
             variants={{
               open: { opacity: 1, height: 'auto' },
               collapsed: { opacity: 0, height: 0 },
@@ -144,7 +157,10 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
               type="button"
               className="inline-flex flex-none flex-shrink-0 items-center p-2 focus:outline-none"
             >
-              <XMarkIcon className="h-7 w-7 text-dark-gray dark:text-dark" aria-hidden="true" />
+              <XMarkIcon
+                className="h-7 w-7 text-dark-gray dark:text-dark"
+                aria-hidden="true"
+              />
               <span className="sr-only">Close Search</span>
             </button>
           </motion.div>
@@ -156,7 +172,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-40 bg-black dark:bg-slate-900/95 dark:backdrop-blur dark:[@supports(backdrop-filter:blur(0))]:bg-slate-900/75 bg-opacity-75 dark:bg-opacity-40 transition-opacity"
+          className="fixed inset-0 z-40 bg-black bg-opacity-75 transition-opacity dark:bg-slate-900/95 dark:bg-opacity-40 dark:backdrop-blur dark:[@supports(backdrop-filter:blur(0))]:bg-slate-900/75"
         />
       )}
     </AnimatePresence>

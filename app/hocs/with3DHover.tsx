@@ -12,10 +12,10 @@ type ComponentWith3DHoverProps<T = unknown> = PropsWithChildren<T>
 /**
  * HOC to wrap components with a 3d hover
  */
-export function with3DHover<T extends ComponentWith3DHoverProps>(
+export function with3DHover<T>(
   WrappedComponent: ComponentType<T>
 ) {
-  const ComponentWith3DHover = forwardRef<HTMLElement, T>((props, ref) => {
+  const ComponentWith3DHover = forwardRef<HTMLElement, T & ComponentWith3DHoverProps>((props, ref) => {
     const innerRef = useRef<HTMLDivElement>(null)
     useImperativeHandle(ref, () => innerRef.current!)
 
