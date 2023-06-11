@@ -87,9 +87,6 @@ Donate **ETHER**, **ADA**, **BNB**, **USDT**, **PING**:
 
 Please let us know your contributions! 🙏
 
-## License ⚖️
-This repository is available under the [MIT License](https://github.com/proyecto26/ion-phaser-ce/blob/develop/LICENSE).
-
 ## Happy coding 💯
 Made with ❤️
 
