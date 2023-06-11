@@ -10,19 +10,21 @@ import {
 import type { Dispatch, SetStateAction } from 'react'
 
 import { THEME, THEME_PREFERS_DARK_MQ } from '~/constants'
-import { useMediaQuery } from './useMediaQuery';
+import { useMediaQuery } from './useMediaQuery'
 
-const themes: Array<THEME> = Object.values(THEME);
+const themes: Array<THEME> = Object.values(THEME)
 type ThemeContextType = [THEME | null, Dispatch<SetStateAction<THEME | null>>]
 
 type ThemeProviderProps = PropsWithChildren<{
-  specifiedTheme?: THEME
+  specifiedTheme?: THEME | null
 }>
 
 const getPreferredTheme = () =>
-  window.matchMedia(THEME_PREFERS_DARK_MQ).matches ? THEME.DARK : THEME.LIGHT;
+  window.matchMedia(THEME_PREFERS_DARK_MQ).matches ? THEME.DARK : THEME.LIGHT
 
-export const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
+export const ThemeContext = createContext<ThemeContextType | undefined>(
+  undefined
+)
 
 function ThemeProvider({ children, specifiedTheme }: ThemeProviderProps) {
   const [theme, setTheme] = useState<THEME | null>(() => {
@@ -31,42 +33,42 @@ function ThemeProvider({ children, specifiedTheme }: ThemeProviderProps) {
     // before hydration. Then (during hydration), this code will get the same
     // value that clientThemeCode got so hydration is happy.
     if (specifiedTheme) {
-      return themes.includes(specifiedTheme) ? specifiedTheme : null;
+      return themes.includes(specifiedTheme) ? specifiedTheme : null
     }
 
     // there's no way for us to know what the theme should be in this context
     // the client will have to figure it out before hydration.
     if (typeof document === 'undefined') {
-      return null;
+      return null
     }
 
-    return getPreferredTheme();
-  });
-  
-  const persistTheme = useFetcher();
-  const persistThemeRef = useRef(persistTheme);
-  useEffect(() => {
-    persistThemeRef.current = persistTheme;
-  }, [persistTheme]);
+    return getPreferredTheme()
+  })
 
-  const mountRun = useRef(false);
+  const persistTheme = useFetcher()
+  const persistThemeRef = useRef(persistTheme)
+  useEffect(() => {
+    persistThemeRef.current = persistTheme
+  }, [persistTheme])
+
+  const mountRun = useRef(false)
 
   useEffect(() => {
     if (!mountRun.current) {
-      mountRun.current = true;
-      return;
+      mountRun.current = true
+      return
     }
     if (!theme) {
-      return;
+      return
     }
 
     persistThemeRef.current.submit(
       { theme },
       { action: 'action/set-theme', method: 'post' }
-    );
-  }, [theme]);
+    )
+  }, [theme])
 
-  useMediaQuery({ setTheme });
+  useMediaQuery({ setTheme })
 
   return (
     <ThemeContext.Provider value={[theme, setTheme]}>

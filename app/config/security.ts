@@ -5,7 +5,7 @@ const envDomains = [domains, localDomains].filter(Boolean).join(' ');
 export const ContentSecurityPolicy = `
   default-src 'self' data: blob:;
   script-src 'self' 'unsafe-inline' data: blob: ${envDomains};
-  style-src 'self' 'unsafe-inline' https://rsms.me;
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://rsms.me;
   object-src 'none';
   base-uri 'self';
   connect-src 'self' ${envDomains} ;
