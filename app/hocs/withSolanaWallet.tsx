@@ -1,15 +1,27 @@
-import { ComponentType, PropsWithChildren, useMemo } from 'react'
+import {
+  ComponentType,
+  PropsWithChildren,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react'
 import {
   ConnectionProvider,
   WalletProvider,
 } from '@solana/wallet-adapter-react'
-import { WalletAdapterNetwork } from '@solana/wallet-adapter-base'
+import {
+  Adapter,
+  WalletAdapterNetwork,
+  WalletError,
+} from '@solana/wallet-adapter-base'
 import {
   PhantomWalletAdapter,
   BraveWalletAdapter,
 } from '@solana/wallet-adapter-wallets'
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui'
 import { clusterApiUrl } from '@solana/web3.js'
+
+import WalletDialog from '~/components/dialogs/WalletDialog'
 
 type ComponentWithSolanaWalletProps = PropsWithChildren<{
   // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.
@@ -32,6 +44,8 @@ export function withSolanaWalletConnection<T>(
       [solanaNetwork]
     )
 
+    const [showWalletDialog, setShowWalletDialog] = useState(false)
+
     const wallets = useMemo(
       () => [
         /**
@@ -48,10 +62,19 @@ export function withSolanaWalletConnection<T>(
       [solanaNetwork]
     )
 
+    const onError = useCallback((error: WalletError, adapter?: Adapter) => {
+      console.error(error, adapter)
+    }, [])
+
     return (
       <ConnectionProvider endpoint={endpoint}>
-        <WalletProvider wallets={wallets} autoConnect>
-          <WalletModalProvider>
+        <WalletProvider wallets={wallets} autoConnect onError={onError}>
+          <WalletModalProvider >
+            <WalletDialog
+              isOpen={showWalletDialog}
+              onClose={() => setShowWalletDialog(false)}
+              onAccept={() => null}
+            />
             <WrappedComponent {...(props as any)} />
           </WalletModalProvider>
         </WalletProvider>

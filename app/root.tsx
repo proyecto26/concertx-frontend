@@ -9,6 +9,7 @@ import {
   useLoaderData,
   useLocation,
 } from '@remix-run/react'
+import { WalletAdapterNetwork } from '@solana/wallet-adapter-base'
 import clsx from 'clsx'
 import { useEffect } from 'react'
 import { AuthenticityTokenProvider } from 'remix-utils'
@@ -23,18 +24,17 @@ import { getAuthSession } from '~/cookies/auth.server'
 import { getEnv } from '~/env.server'
 import { getGlobalMetaTags } from '~/config/seo'
 import { ThemeScript, useTheme, withThemeProvider } from '~/theme'
-import { getThemeSession } from './theme/theme.server'
-import { withSolanaWalletConnection } from './hocs'
-import { WalletAdapterNetwork } from '@solana/wallet-adapter-base'
-import { withQueryClientProvider } from './utils/query'
+import { getThemeSession } from '~/theme/theme.server'
+import { withSolanaWalletConnection } from '~/hocs'
+import { withQueryClientProvider } from '~/utils/query'
 
 export let links: LinksFunction = () => {
   return [
     { rel: 'stylesheet', href: 'https://rsms.me/inter/inter.css' },
     { rel: 'manifest', href: '/site.webmanifest' },
     { rel: 'icon', href: '/favicon.ico' },
-    { rel: 'stylesheet', href: vendorsStyles },
     { rel: 'stylesheet', href: tailwindStyles },
+    { rel: 'stylesheet', href: vendorsStyles },
     {
       rel: 'stylesheet',
       href: mainStyles,

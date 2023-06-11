@@ -1,5 +1,7 @@
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import { Link } from '@remix-run/react'
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
+import { ClientOnly } from 'remix-utils'
 import clsx from 'clsx'
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { useState } from 'react'
@@ -9,8 +11,8 @@ import { useScroll } from '~/hooks'
 import { useSolanaWallet } from '~/hooks/useSolanaWallet'
 import { MobileNavigation } from '../mobile/Navigation'
 import Search from '../search/Search'
-import Button from '../ui/Button'
 import ThemeButton from '../ui/ThemeButton'
+
 
 type HeaderProps = {
   title?: string
@@ -20,9 +22,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
   const {
     error: walletError,
     connected,
-    messageSignature,
     onClickConnect,
-    onSignMessage,
     publicKey,
   } = useSolanaWallet()
   const { isScrolled } = useScroll()
@@ -114,9 +114,9 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
                 <span className="sr-only">Open Search</span>
               </motion.button>
             )}
-            <Button onClick={onClickConnect} className="hidden md:block">
-              Connect Wallet
-            </Button>
+            <ClientOnly>
+              {() => <WalletMultiButton />}
+            </ClientOnly>
             <button
               type="button"
               className="inline-flex flex-shrink-0 items-center p-2.5 text-center text-sm font-medium focus:outline-none md:hidden"
