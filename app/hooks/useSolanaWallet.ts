@@ -6,14 +6,13 @@ import bs58 from 'bs58';
 
 import { encodeSignatureMessage, verifySignature } from '~/utils/solana';
 import { useUserWallet } from './useUserWallet';
-import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
 
 export function useSolanaWallet() {
   const [messageSignature, setMessageSignature] = useState<string>('');
   const [error, setError] = useState<Error | null>();
   const { visible, setVisible } = useWalletModal();
   const { connection } = useConnection();
-  const { publicKey, signMessage, connected, connect, wallet } = useWallet();
+  const { publicKey, signMessage, connected, connect, wallet, select } = useWallet();
   const loadingSignatureRef = useRef(false);
 
   const {
@@ -29,8 +28,9 @@ export function useSolanaWallet() {
   }, [walletPublicKey, signature, connected, messageSignature]);
 
   const onClickConnect = useCallback(async () => {
-    setVisible(true);
-    if (!publicKey) {
+    if (!wallet) {
+      setVisible(true);
+    } else {
       connect();
     }
   }, [publicKey]);
@@ -39,6 +39,7 @@ export function useSolanaWallet() {
     if (loadingSignatureRef.current || !signMessage) return;
     loadingSignatureRef.current = true;
     try {
+      alert('TODO: Finish Signature request!')
       setError(null); 
       setMessageSignature('');
       if (!publicKey) {
