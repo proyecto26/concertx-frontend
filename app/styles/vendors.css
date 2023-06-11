@@ -1,0 +1,5 @@
+@import "@solana/wallet-adapter-react-ui/styles.css";
+
+.wallet-adapter-button {
+    @apply bg-dark-gray dark:bg-primary hover:bg-gray-800 dark:hover:bg-primary-tint !important;
+}

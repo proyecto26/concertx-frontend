@@ -1,0 +1,82 @@
+html.dark {
+    --theme-color-primary: #3f2249;
+    --theme-color-primary-rgb: 63, 34, 73;
+    --theme-color-primary-contrast: #ffffff;
+    --theme-color-primary-contrast-rgb: 255, 255, 255;
+    --theme-color-primary-shade: #371e40;
+    --theme-color-primary-tint: #52385b;
+
+    --theme-color-secondary: #635db6;
+    --theme-color-secondary-rgb: 99, 93, 182;
+    --theme-color-secondary-contrast: #ffffff;
+    --theme-color-secondary-contrast-rgb: 255, 255, 255;
+    --theme-color-secondary-shade: #5752a0;
+    --theme-color-secondary-tint: #736dbd;
+
+    --theme-color-tertiary: #a388e2;
+    --theme-color-tertiary-rgb: 163, 136, 226;
+    --theme-color-tertiary-contrast: #000000;
+    --theme-color-tertiary-contrast-rgb: 0, 0, 0;
+    --theme-color-tertiary-shade: #8f78c7;
+    --theme-color-tertiary-tint: #ac94e5;
+
+    --theme-color-success: #2fdf75;
+    --theme-color-success-rgb: 47, 223, 117;
+    --theme-color-success-contrast: #000000;
+    --theme-color-success-contrast-rgb: 0, 0, 0;
+    --theme-color-success-shade: #29c467;
+    --theme-color-success-tint: #44e283;
+
+    --theme-color-warning: #ffd534;
+    --theme-color-warning-rgb: 255, 213, 52;
+    --theme-color-warning-contrast: #000000;
+    --theme-color-warning-contrast-rgb: 0, 0, 0;
+    --theme-color-warning-shade: #e0bb2e;
+    --theme-color-warning-tint: #ffd948;
+
+    --theme-color-danger: #ff4961;
+    --theme-color-danger-rgb: 255, 73, 97;
+    --theme-color-danger-contrast: #ffffff;
+    --theme-color-danger-contrast-rgb: 255, 255, 255;
+    --theme-color-danger-shade: #e04055;
+    --theme-color-danger-tint: #ff5b71;
+
+    --theme-color-dark: #f4f5f8;
+    --theme-color-dark-rgb: 244, 245, 248;
+    --theme-color-dark-contrast: #000000;
+    --theme-color-dark-contrast-rgb: 0, 0, 0;
+    --theme-color-dark-shade: #d7d8da;
+    --theme-color-dark-tint: #f5f6f9;
+
+    --theme-color-medium: #989aa2;
+    --theme-color-medium-rgb: 152, 154, 162;
+    --theme-color-medium-contrast: #000000;
+    --theme-color-medium-contrast-rgb: 0, 0, 0;
+    --theme-color-medium-shade: #86888f;
+    --theme-color-medium-tint: #a2a4ab;
+
+    --theme-color-light: #222428;
+    --theme-color-light-rgb: 34, 36, 40;
+    --theme-color-light-contrast: #ffffff;
+    --theme-color-light-contrast-rgb: 255, 255, 255;
+    --theme-color-light-shade: #1e2023;
+    --theme-color-light-tint: #383a3e;
+
+    * {
+        -ms-overflow-style: auto;
+        scrollbar-color: #7a7a7a #1a1b1d;
+        scrollbar-width: thin;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply rounded-lg bg-gray-400;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-gradient-to-t from-dark-gray to-gray-800;
+    }
+}

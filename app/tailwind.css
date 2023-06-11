@@ -1,0 +1,13 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'tailwindcss/screens';
+
+@layer components {
+  .navlink {
+    @apply font-light hover:font-bold text-light dark:text-dark;
+  }
+  .navlink.active {
+    @apply font-bold;
+  }
+}

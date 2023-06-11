@@ -1,0 +1,76 @@
+:root {
+	--theme-color-primary: #428cff;
+	--theme-color-primary-rgb: 66, 140, 255;
+	--theme-color-primary-contrast: #ffffff;
+	--theme-color-primary-contrast-rgb: 255, 255, 255;
+	--theme-color-primary-shade: #3a7be0;
+	--theme-color-primary-tint: #5598ff;
+
+	--theme-color-secondary: #50c8ff;
+	--theme-color-secondary-rgb: 80, 200, 255;
+	--theme-color-secondary-contrast: #ffffff;
+	--theme-color-secondary-contrast-rgb: 255, 255, 255;
+	--theme-color-secondary-shade: #46b0e0;
+	--theme-color-secondary-tint: #62ceff;
+
+	--theme-color-tertiary: #6a64ff;
+	--theme-color-tertiary-rgb: 106, 100, 255;
+	--theme-color-tertiary-contrast: #ffffff;
+	--theme-color-tertiary-contrast-rgb: 255, 255, 255;
+	--theme-color-tertiary-shade: #5d58e0;
+	--theme-color-tertiary-tint: #7974ff;
+
+	--theme-color-success: #2dd36f;
+	--theme-color-success-rgb: 45, 211, 111;
+	--theme-color-success-contrast: #000000;
+	--theme-color-success-contrast-rgb: 0, 0, 0;
+	--theme-color-success-shade: #28ba62;
+	--theme-color-success-tint: #42d77d;
+
+	--theme-color-warning: #ffc409;
+	--theme-color-warning-rgb: 255, 196, 9;
+	--theme-color-warning-contrast: #000000;
+	--theme-color-warning-contrast-rgb: 0, 0, 0;
+	--theme-color-warning-shade: #e0ac08;
+	--theme-color-warning-tint: #ffca22;
+
+	--theme-color-danger: #eb445a;
+	--theme-color-danger-rgb: 235, 68, 90;
+	--theme-color-danger-contrast: #ffffff;
+	--theme-color-danger-contrast-rgb: 255, 255, 255;
+	--theme-color-danger-shade: #cf3c4f;
+	--theme-color-danger-tint: #ed576b;
+
+	--theme-color-medium: #92949c;
+	--theme-color-medium-rgb: 146, 148, 156;
+	--theme-color-medium-contrast: #000000;
+	--theme-color-medium-contrast-rgb: 0, 0, 0;
+	--theme-color-medium-shade: #808289;
+	--theme-color-medium-tint: #9d9fa6;
+
+	--theme-color-light: #f4f5f8;
+	--theme-color-light-rgb: 244, 245, 248;
+	--theme-color-light-contrast: #000000;
+	--theme-color-light-contrast-rgb: 0, 0, 0;
+	--theme-color-light-shade: #d7d8da;
+	--theme-color-light-tint: #f5f6f9;
+
+}
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	@apply bg-gray-400 rounded-lg;
+}
+
+::-webkit-scrollbar-track {
+	@apply bg-gradient-to-t from-dark-gray to-gray-800;
+}
+
+* {
+	-ms-overflow-style: auto;
+	scrollbar-color: #7a7a7a #1A1B1D;
+	scrollbar-width: thin;
+}
