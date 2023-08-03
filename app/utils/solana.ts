@@ -3,17 +3,12 @@ import { sign } from 'tweetnacl'
 import { decode } from 'bs58'
 
 export const getSignatureRequestMsg = (walletPublicKey: string, nonce: string) => {
-  return `
-  Welcome to ConcertX!
-
-  Click to sign in and accept the ConcertX Terms of Service and Privacy Policy.
-  
+  return `Welcome to ConcertX!
+  Click to sign in and accept the ConcertX Terms of Service and Privacy Policy.  
   This request will not trigger a blockchain transaction or cost any gas fees.
-  
-  Wallet address:
-  ${walletPublicKey}
-  Nonce:
-  ${nonce}`;
+  Wallet address: ${walletPublicKey}
+  Nonce: ${nonce}
+  `.replace(/^\s*/gm, "\n").trim();
 }
 
 export const encodeSignatureMessage = (walletPublicKey: string, nonce: string) => {

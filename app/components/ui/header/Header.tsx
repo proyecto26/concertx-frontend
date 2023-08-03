@@ -6,12 +6,12 @@ import clsx from 'clsx'
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { useState } from 'react'
 import useOnclickOutside from 'react-cool-onclickoutside'
+import { useMediaQuery } from 'react-responsive';
 
 import { useScroll } from '~/hooks'
-import { useSolanaWallet } from '~/hooks/useSolanaWallet'
 import { MobileNavigation } from '../mobile/Navigation'
 import Search from '../search/Search'
-import ThemeButton from '../ui/ThemeButton'
+import ThemeButton from '../ThemeButton'
 
 
 type HeaderProps = {
@@ -19,15 +19,10 @@ type HeaderProps = {
 }
 
 const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
-  const {
-    error: walletError,
-    connected,
-    onClickConnect,
-    publicKey,
-  } = useSolanaWallet()
   const { isScrolled } = useScroll()
   const [isSearchFocused, setSearchFocused] = useState(false)
   const [isMobileSearchFocused, setMobileSearchFocused] = useState(false)
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   const onCloseSearch = () => {
     setSearchFocused(false)
@@ -83,7 +78,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
               <li className="mr-3">
                 <a
                   className="inline-block px-4 py-2 text-gray-800 no-underline dark:text-dark"
-                  href="#"
+                  href="/artists"
                 >
                   Artists
                 </a>
@@ -91,7 +86,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
               <li className="mr-3">
                 <a
                   className="inline-block px-4 py-2 text-gray-800 no-underline dark:text-dark"
-                  href="#"
+                  href="/events"
                 >
                   Events
                 </a>
@@ -115,22 +110,19 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
               </motion.button>
             )}
             <ClientOnly>
-              {() => <WalletMultiButton />}
+              {() => (
+              <WalletMultiButton className="hover:bg-transparent">
+                 {isMobile && (
+                  <img
+                    alt="Wallet"
+                    aria-hidden="true"
+                    src="/assets/wallet_icon.svg"
+                    className="h-7 w-7 dark:invert"
+                  />
+                 )}
+              </WalletMultiButton>
+              )}
             </ClientOnly>
-            <button
-              type="button"
-              className="inline-flex flex-shrink-0 items-center p-2.5 text-center text-sm font-medium focus:outline-none md:hidden"
-              onClick={onClickConnect}
-            >
-              <img
-                alt="Wallet"
-                aria-hidden="true"
-                src="/assets/wallet_icon.svg"
-                className="h-7 w-7 fill-slate-700 dark:invert"
-              />
-              <span className="sr-only">Connect Wallet</span>
-            </button>
-
             <ThemeButton />
           </div>
         </div>

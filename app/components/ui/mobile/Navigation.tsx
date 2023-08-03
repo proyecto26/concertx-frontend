@@ -5,16 +5,17 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import CloseIcon from '../icons/Close';
 import MenuIcon from '../icons/Menu';
-import { Navigation } from '../Navigation';
+import { Navigation } from '../../Navigation';
 
 export function MobileNavigation() {
-  let { location } = useNavigation()
-  let [isOpen, setIsOpen] = useState(false)
+  const { location } = useNavigation()
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     if (!isOpen) return;
 
     setIsOpen(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location])
 
   return (

@@ -1,7 +1,7 @@
 import { createCookieSessionStorage } from '@remix-run/node'
 
 import { sessionSecret } from '~/config/env.server'
-import { THEME } from '~/constants'
+import type { THEME } from '~/constants'
 import { isTheme } from './utils'
 
 const themeStorage = createCookieSessionStorage({

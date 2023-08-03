@@ -1,13 +1,17 @@
+/* eslint-disable react/display-name */
 import { useFetcher } from '@remix-run/react'
 import {
-  ComponentType,
-  PropsWithChildren,
   createContext,
   useEffect,
   useRef,
   useState,
 } from 'react'
-import type { Dispatch, SetStateAction } from 'react'
+import type {
+  Dispatch,
+  SetStateAction,
+  ComponentType,
+  PropsWithChildren
+} from 'react'
 
 import { THEME, THEME_PREFERS_DARK_MQ } from '~/constants'
 import { useMediaQuery } from './useMediaQuery'
@@ -64,7 +68,7 @@ function ThemeProvider({ children, specifiedTheme }: ThemeProviderProps) {
 
     persistThemeRef.current.submit(
       { theme },
-      { action: 'action/set-theme', method: 'post' }
+      { action: 'api/theme', method: 'post' }
     )
   }, [theme])
 

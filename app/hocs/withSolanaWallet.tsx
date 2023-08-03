@@ -1,15 +1,13 @@
 import {
-  ComponentType,
-  PropsWithChildren,
+  type ComponentType,
   useCallback,
   useMemo,
-  useState,
 } from 'react'
 import {
   ConnectionProvider,
   WalletProvider,
 } from '@solana/wallet-adapter-react'
-import {
+import type {
   Adapter,
   WalletAdapterNetwork,
   WalletError,
@@ -21,12 +19,10 @@ import {
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui'
 import { clusterApiUrl } from '@solana/web3.js'
 
-import WalletDialog from '~/components/dialogs/WalletDialog'
-
-type ComponentWithSolanaWalletProps = PropsWithChildren<{
+type ComponentWithSolanaWalletProps = {
   // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.
   solanaNetwork: WalletAdapterNetwork
-}>
+};
 
 /**
  * HOC to wrap components with sollana wallet connection
@@ -34,18 +30,12 @@ type ComponentWithSolanaWalletProps = PropsWithChildren<{
 export function withSolanaWalletConnection<T>(
   WrappedComponent: ComponentType<T>
 ) {
-  const ComponentWithSolanaWallet = ({
-    solanaNetwork,
-    ...props
-  }: T & ComponentWithSolanaWalletProps) => {
+  const ComponentWithSolanaWallet = (props: T & ComponentWithSolanaWalletProps) => {
     // You can also provide a custom RPC endpoint.
     const endpoint = useMemo(
-      () => clusterApiUrl(solanaNetwork),
-      [solanaNetwork]
+      () => clusterApiUrl(props.solanaNetwork),
+      [props.solanaNetwork]
     )
-
-    const [showWalletDialog, setShowWalletDialog] = useState(false)
-
     const wallets = useMemo(
       () => [
         /**
@@ -59,23 +49,18 @@ export function withSolanaWalletConnection<T>(
         new PhantomWalletAdapter(),
         new BraveWalletAdapter(),
       ],
-      [solanaNetwork]
+      []
     )
 
     const onError = useCallback((error: WalletError, adapter?: Adapter) => {
-      console.error(error, adapter)
+      console.error(`Solana wallet: ${error}`, adapter)
     }, [])
 
     return (
       <ConnectionProvider endpoint={endpoint}>
         <WalletProvider wallets={wallets} autoConnect onError={onError}>
-          <WalletModalProvider >
-            <WalletDialog
-              isOpen={showWalletDialog}
-              onClose={() => setShowWalletDialog(false)}
-              onAccept={() => null}
-            />
-            <WrappedComponent {...(props as any)} />
+          <WalletModalProvider>
+            <WrappedComponent {...props} />
           </WalletModalProvider>
         </WalletProvider>
       </ConnectionProvider>

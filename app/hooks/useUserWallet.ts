@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
+import { useAuthenticityToken } from 'remix-utils'
 
 type WalletResponse = {
   nonce: string
@@ -8,8 +9,9 @@ type WalletResponse = {
 }
 
 export function useUserWallet() {
+  const csrf = useAuthenticityToken();
   const [enabledQuery, setEnabledQuery] = useState(true)
-  const { data } = useQuery({
+  const { data, refetch, status } = useQuery({
     queryKey: ['user-wallet'],
     queryFn: async () => {
       const response = await fetch(`/api/wallet`)
@@ -28,9 +30,27 @@ export function useUserWallet() {
     onSuccess: () => setEnabledQuery(false),
   })
 
+  const updateWallet = async (publicKey: string, signature: string) => {
+    const formData = new FormData();
+    formData.append('csrf', csrf);
+    formData.append('walletPublicKey', publicKey);
+    formData.append('signature', signature);
+    const response = await fetch(`/api/wallet`, {
+      method: 'post',
+      body: formData,
+    })
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  };
+
   return {
     nonce: data?.nonce,
     publicKey: data?.publicKey,
     signature: data?.signature,
+    updateWallet,
+    onLoadWallet: refetch,
+    walletStatus: status,
   }
 }
