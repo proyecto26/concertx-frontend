@@ -1,7 +1,7 @@
 import { Dialog } from '@headlessui/react';
 import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
-import { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 
 import { transitionVariants } from '../../utils/motion';
 

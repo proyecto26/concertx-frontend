@@ -1,13 +1,12 @@
 import { NavLink } from '@remix-run/react';
-import React, { useState } from 'react';
+import React, { type PropsWithChildren, useState } from 'react';
 
 import { FACEBOOK_URL, GITHUB_URL, INSTAGRAM_URL } from '~/constants';
 import FacebookIcon from '../icons/Facebook';
 import InstagramIcon from '../icons/Instagram';
 import GitHubIcon from '../icons/GitHub';
 
-type FooterProps = {
-};
+type FooterProps = PropsWithChildren;
 
 const navigation = [
   {

@@ -9,7 +9,7 @@ export const ContentSecurityPolicy = `
   object-src 'none';
   base-uri 'self';
   connect-src 'self' ${envDomains} ;
-  font-src 'self' data: https://rsms.me;
+  font-src 'self' data: https://rsms.me https://fonts.gstatic.com;
   frame-src 'self';
   img-src 'self' data: blob: ${domains};
   manifest-src 'self';
