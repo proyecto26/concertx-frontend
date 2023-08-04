@@ -1,5 +1,5 @@
 import Layout from '~/components/Layout';
-import LoveIcon from '~/components/icons/Love';
+import LoveIcon from '~/components/ui/icons/Love';
 
 export default function Index() {
   return (

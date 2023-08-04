@@ -1,54 +1,51 @@
 import { WalletNotConnectedError } from '@solana/wallet-adapter-base';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
-import { useWalletModal } from '@solana/wallet-adapter-react-ui';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import bs58 from 'bs58';
 
 import { encodeSignatureMessage, verifySignature } from '~/utils/solana';
 import { useUserWallet } from './useUserWallet';
 
 export function useSolanaWallet() {
-  const [messageSignature, setMessageSignature] = useState<string>('');
+  const [showSignatureRequest, setShowSignatureRequest] = useState(false);
   const [error, setError] = useState<Error | null>();
-  const { visible, setVisible } = useWalletModal();
   const { connection } = useConnection();
-  const { publicKey, signMessage, connected, connect, wallet, select } = useWallet();
+  const { publicKey, signMessage, connected, wallet } = useWallet();
   const loadingSignatureRef = useRef(false);
 
   const {
     nonce,
     publicKey: walletPublicKey,
-    signature
+    walletStatus,
+    updateWallet,
+    onLoadWallet,
   } = useUserWallet();
 
   useEffect(() => {
-    if (connected && ((walletPublicKey || publicKey) && publicKey?.toBase58() !== walletPublicKey)) {
-      setError(new Error ('Selecting another wallet, sign in again to use the new one'));
+    if (publicKey && walletStatus !== 'loading' && publicKey.toBase58() !== walletPublicKey) {
+      onLoadWallet()
     }
-  }, [walletPublicKey, signature, connected, messageSignature]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [publicKey, walletStatus]);
 
-  const onClickConnect = useCallback(async () => {
-    if (!wallet) {
-      setVisible(true);
-    } else {
-      connect();
+  useEffect(() => {
+    if (connected && walletStatus === 'success' && publicKey) {
+      setShowSignatureRequest(publicKey.toBase58() !== walletPublicKey);
     }
-  }, [publicKey]);
+  }, [connected, walletPublicKey, publicKey, walletStatus]);
 
   const onSignMessage = async () => {
     if (loadingSignatureRef.current || !signMessage) return;
     loadingSignatureRef.current = true;
     try {
-      alert('TODO: Finish Signature request!')
-      setError(null); 
-      setMessageSignature('');
+      setError(null);
       if (!publicKey) {
         throw new WalletNotConnectedError();
       }
       if (!nonce) {
         throw new Error('Please sign in again');
       }
-      const encodedMessage = encodeSignatureMessage(publicKey.toString(), nonce);
+      const encodedMessage = encodeSignatureMessage(publicKey.toBase58(), nonce);
       const signedMessage = await signMessage(encodedMessage);
       // Sign the bytes using the wallet
       const signature = bs58.encode(signedMessage);
@@ -56,7 +53,9 @@ export function useSolanaWallet() {
       if (!verifySignature(nonce, signature, publicKey)) {
         throw new Error('Invalid signature!');
       }
-      setMessageSignature(signature);
+      // Update signature in the cookie
+      await updateWallet(publicKey.toBase58(), signature);
+      setShowSignatureRequest(false);
     } catch (error) {
       setError(error as Error);
     } finally {
@@ -66,13 +65,11 @@ export function useSolanaWallet() {
 
   return {
     error,
-    isModalVisible: visible,
     connected,
     connection,
     wallet,
     publicKey,
-    onClickConnect,
     onSignMessage,
-    messageSignature,
+    showSignatureRequest,
   };
 }

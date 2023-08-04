@@ -1,4 +1,5 @@
-import { json, LinksFunction, LoaderArgs, MetaFunction } from '@remix-run/node'
+import type { LinksFunction, LoaderArgs, MetaFunction } from '@remix-run/node';
+import { json } from '@remix-run/node'
 import {
   Links,
   LiveReload,
@@ -6,15 +7,17 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  isRouteErrorResponse,
   useLoaderData,
   useLocation,
+  useRouteError,
 } from '@remix-run/react'
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base'
 import clsx from 'clsx'
 import { useEffect } from 'react'
 import { AuthenticityTokenProvider } from 'remix-utils'
 
-import { THEME } from '~/constants'
+import type { THEME } from '~/constants'
 import tailwindStyles from '~/tailwind.css'
 import vendorsStyles from '~/styles/vendors.css'
 import mainStyles from '~/styles/main.css'
@@ -27,8 +30,9 @@ import { ThemeScript, useTheme, withThemeProvider } from '~/theme'
 import { getThemeSession } from '~/theme/theme.server'
 import { withSolanaWalletConnection } from '~/hocs'
 import { withQueryClientProvider } from '~/utils/query'
+import WalletDialog from './components/dialogs/WalletDialog';
 
-export let links: LinksFunction = () => {
+export const links: LinksFunction = () => {
   return [
     { rel: 'stylesheet', href: 'https://rsms.me/inter/inter.css' },
     { rel: 'manifest', href: '/site.webmanifest' },
@@ -122,6 +126,7 @@ function App({ csrf }: AppProps) {
         </head>
         <body className="h-full bg-light font-sans leading-normal tracking-normal">
           <Outlet />
+          <WalletDialog />
           <ScrollRestoration />
           <Scripts />
           <LiveReload />
@@ -147,3 +152,29 @@ export default function () {
     />
   )
 }
+
+export const ErrorBoundary = () => {
+  const error = useRouteError();
+
+  return (
+    <div>
+        {isRouteErrorResponse(error) ? (
+          <div>
+            <h1>
+              {error.status} {error.statusText}
+            </h1>
+            <p>{error.data}</p>
+          </div>
+        ) : error instanceof Error ? (
+          <div>
+            <h1>Error</h1>
+            <p>{error.message}</p>
+            <p>The stack trace is:</p>
+            <pre>{error.stack}</pre>
+          </div>
+        ) : (
+          <h1>Unknown Error</h1>
+        )}
+      </div>
+  );
+};
