@@ -65,7 +65,7 @@ export function MobileNavigation() {
               exit="closed"
               className="min-h-full w-full max-w-xs bg-white px-4 pt-[0.6rem] pb-12 dark:bg-slate-900 sm:px-6"
             >
-              <div className="flex items-center">
+              <div className="flex items-center justify-between">
                 <button
                   type="button"
                   onClick={() => setIsOpen(false)}
@@ -73,7 +73,7 @@ export function MobileNavigation() {
                 >
                   <CloseIcon className="h-6 w-6 stroke-slate-500" />
                 </button>
-                <Link to="/" className="ml-6" aria-label="Home page">
+                <Link to="/" aria-label="Home page">
                   <img alt="Logo" src='/assets/logo_con.svg' className="h-9 w-9 fill-slate-700 dark:fill-sky-100 rounded-full" />
                 </Link>
               </div>

@@ -1,7 +1,9 @@
-import {
+import type {
   ComponentType,
+  PropsWithChildren
+} from 'react';
+import {
   forwardRef,
-  PropsWithChildren,
   useEffect,
   useImperativeHandle,
   useRef,
@@ -15,6 +17,7 @@ type ComponentWith3DHoverProps<T = unknown> = PropsWithChildren<T>
 export function with3DHover<T>(
   WrappedComponent: ComponentType<T>
 ) {
+  // eslint-disable-next-line react/display-name
   const ComponentWith3DHover = forwardRef<HTMLElement, T & ComponentWith3DHoverProps>((props, ref) => {
     const innerRef = useRef<HTMLDivElement>(null)
     useImperativeHandle(ref, () => innerRef.current!)

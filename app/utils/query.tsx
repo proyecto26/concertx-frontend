@@ -1,5 +1,6 @@
+/* eslint-disable react/display-name */
 import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ComponentType, PropsWithChildren } from 'react';
+import type { ComponentType, PropsWithChildren } from 'react';
 
 const queryClient = new QueryClient({
   defaultOptions: {

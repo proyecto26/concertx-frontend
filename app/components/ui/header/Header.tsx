@@ -117,7 +117,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
                     alt="Wallet"
                     aria-hidden="true"
                     src="/assets/wallet_icon.svg"
-                    className="h-7 w-7 dark:invert"
+                    className="h-7 w-7 dark:invert z-0"
                   />
                  )}
               </WalletMultiButton>

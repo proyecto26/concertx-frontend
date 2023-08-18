@@ -45,7 +45,7 @@ const HomePage: React.FC = () => {
   return (
     <section className="container mx-auto py-8 md:py-12 lg:px-14">
       <div className="flex flex-col rounded-xl bg-[#FAFAFA] dark:border-gray-700 dark:bg-slate-900 lg:flex-row">
-        <div className="flex items-center justify-center p-5 lg:w-1/3 md:px-16 ml-0 lg:-ml-16 xl:-ml-20">
+        <div className="flex items-center justify-center p-5 lg:w-1/3 md:px-16 ml-0 lg:-ml-10 xl:-ml-5 2xl:-ml-16">
           <Figure
             imgSrc="/assets/welcome.png"
             imgAlt="ConcertX"

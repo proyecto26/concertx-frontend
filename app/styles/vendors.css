@@ -5,5 +5,5 @@
 }
 
 .wallet-adapter-dropdown .wallet-adapter-button-start-icon {
-    @apply scale-[.65] -mr-4 mt-4 md:scale-100 md:mr-3 md:mt-0;
+    @apply scale-[.65] -mr-4 mt-4 md:scale-100 md:mr-3 md:mt-0 z-10;
 }
