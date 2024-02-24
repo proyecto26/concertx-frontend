@@ -16,5 +16,5 @@ export function useTruncate(str: string, maxLength: number, separator = '...') {
       separator +
       str.substring(str.length - backChars)
     );
-  }, [str, maxLength])
+  }, [str, maxLength, separator])
 }

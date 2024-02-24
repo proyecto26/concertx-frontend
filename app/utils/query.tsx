@@ -2,7 +2,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ComponentType, PropsWithChildren } from 'react';
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       // a back-off delay is gradually applied to each retry attempt

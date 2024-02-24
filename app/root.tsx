@@ -30,7 +30,9 @@ import { ThemeScript, useTheme, withThemeProvider } from '~/theme'
 import { getThemeSession } from '~/theme/theme.server'
 import { withSolanaWalletConnection } from '~/hocs'
 import { withQueryClientProvider } from '~/utils/query'
-import WalletDialog from './components/dialogs/WalletDialog';
+import WalletDialog from '~/components/dialogs/WalletDialog';
+import { useFindMarketplace } from '~/hooks/nfts/useFindMarketplace';
+import { useMarketplace } from './hooks/nfts/useMarketplace';
 
 export const links: LinksFunction = () => {
   return [
@@ -91,12 +93,14 @@ export function meta() {
   });
 }
 
+const js = String.raw;
 
 type AppProps = {
   csrf: string
+  ENV: ReturnType<typeof getEnv>
 }
 
-function App({ csrf }: AppProps) {
+function App({ csrf, ENV }: AppProps) {
   const location = useLocation()
   const [theme] = useTheme()
 
@@ -104,6 +108,8 @@ function App({ csrf }: AppProps) {
     // TODO: Add Google track view metric
     console.log(location.pathname)
   }, [location])
+
+  useMarketplace({ network: ENV.WALLET_NETWORK })
 
   return (
     <AuthenticityTokenProvider token={csrf}>
@@ -118,6 +124,14 @@ function App({ csrf }: AppProps) {
           <ThemeScript theme={theme as THEME} />
         </head>
         <body className="h-full bg-light font-sans leading-normal tracking-normal">
+          <script
+            suppressHydrationWarning
+            dangerouslySetInnerHTML={{
+              __html: js`
+                window.ENV = ${JSON.stringify(ENV)};
+              `,
+            }}
+          />
           <Outlet />
           <WalletDialog />
           <ScrollRestoration />
@@ -136,12 +150,13 @@ const AppWithProviders = withQueryClientProvider(
 )
 
 export default function () {
-  const { csrf, theme } = useLoaderData<LoaderData>()
+  const { csrf, theme, ENV } = useLoaderData<LoaderData>()
   return (
     <AppWithProviders
       solanaNetwork={WalletAdapterNetwork.Devnet}
       specifiedTheme={theme as THEME}
       csrf={csrf}
+      ENV={ENV}
     />
   )
 }

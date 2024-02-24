@@ -1,7 +1,9 @@
 import clsx from 'clsx'
-import {
+import type {
   HTMLAttributes,
   PropsWithChildren,
+} from 'react'
+import {
   forwardRef,
 } from 'react'
 
@@ -54,5 +56,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     )
   }
 )
+
+Avatar.displayName = 'Avatar'
 
 export default Avatar
