@@ -1,8 +1,9 @@
-// import { apiUrl } from '~/utils/misc.server';
+import { shyftApiKey, walletNetwork } from '~/utils/misc.server';
 
 export function getEnv() {
   return {
-    // API_URL: apiUrl,
+    WALLET_NETWORK: walletNetwork,
+    SHYFT_API_KEY: shyftApiKey,
   };
 }
 
