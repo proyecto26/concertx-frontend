@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { useState } from 'react'
-import { useAuthenticityToken } from 'remix-utils'
+import { useAuthenticityToken } from 'remix-utils/csrf/react'
 
 type WalletResponse = {
   nonce: string
@@ -10,7 +9,6 @@ type WalletResponse = {
 
 export function useUserWallet() {
   const csrf = useAuthenticityToken();
-  const [enabledQuery, setEnabledQuery] = useState(true)
   const { data, refetch, status } = useQuery({
     queryKey: ['user-wallet'],
     queryFn: async () => {
@@ -24,10 +22,7 @@ export function useUserWallet() {
       }
       return data
     },
-    enabled: enabledQuery,
     retry: true,
-    useErrorBoundary: false,
-    onSuccess: () => setEnabledQuery(false),
   })
 
   const updateWallet = async (publicKey: string, signature: string) => {

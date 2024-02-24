@@ -1,5 +1,5 @@
-import { createCookieSessionStorage } from '@remix-run/node';
-import { createAuthenticityToken, verifyAuthenticityToken } from 'remix-utils';
+import { createCookie, createCookieSessionStorage } from '@remix-run/node';
+import { CSRF } from "remix-utils/csrf/server";
 
 import { sessionSecret } from '../config/env.server';
 
@@ -19,8 +19,6 @@ export async function getGlobalSession(request: Request) {
     request.headers.get('Cookie')
   );
   return {
-    createAuthenticityToken: () => createAuthenticityToken(session),
-    verifyAuthenticityToken: (sessionKey?: string) => verifyAuthenticityToken(request, session, sessionKey),
     getError: () => session.get(ERROR_KEY) as string | undefined,
     flashError: (error: string) => session.flash(ERROR_KEY, error),
     getMessage: () => session.get(MESSAGE_KEY) as string | undefined,
@@ -29,3 +27,14 @@ export async function getGlobalSession(request: Request) {
     destroySession: () => globalSession.destroySession(session),
   };
 }
+
+export const csrf = new CSRF({
+	cookie: createCookie("csrf", {
+    path: "/",
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    secrets: [sessionSecret],
+  }),
+	secret: sessionSecret,
+});

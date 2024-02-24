@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import type { ComponentType, PropsWithChildren } from 'react';
 
 const queryClient = new QueryClient({
@@ -7,7 +7,6 @@ const queryClient = new QueryClient({
     queries: {
       // a back-off delay is gradually applied to each retry attempt
       retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 8000),
-      suspense: false,
     },
   },
 });
@@ -23,5 +22,3 @@ export function withQueryClientProvider<T extends PropsWithChildren>(
     )
   }
 }
-
-export const HydrateWithQueryClientProvider = withQueryClientProvider(Hydrate);

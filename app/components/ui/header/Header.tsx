@@ -1,12 +1,12 @@
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import { Link } from '@remix-run/react'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
-import { ClientOnly } from 'remix-utils'
 import clsx from 'clsx'
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { useState } from 'react'
 import useOnclickOutside from 'react-cool-onclickoutside'
 import { useMediaQuery } from 'react-responsive';
+import { ClientOnly } from 'remix-utils/client-only'
 
 import { useScroll } from '~/hooks'
 import { MobileNavigation } from '../mobile/Navigation'

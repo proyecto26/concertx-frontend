@@ -14,8 +14,7 @@ import type {
 } from '@solana/wallet-adapter-base'
 import {
   PhantomWalletAdapter,
-  BraveWalletAdapter,
-} from '@solana/wallet-adapter-wallets'
+} from '@solana/wallet-adapter-phantom'
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui'
 import { clusterApiUrl } from '@solana/web3.js'
 
@@ -47,7 +46,6 @@ export function withSolanaWalletConnection<T>(
          * your users connect to will be loaded.
          */
         new PhantomWalletAdapter(),
-        new BraveWalletAdapter(),
       ],
       []
     )

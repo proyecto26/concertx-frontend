@@ -1,4 +1,4 @@
-import type { LinksFunction, LoaderArgs, MetaFunction } from '@remix-run/node';
+import type { LinksFunction, LoaderFunctionArgs } from '@remix-run/node';
 import { json } from '@remix-run/node'
 import {
   Links,
@@ -15,14 +15,14 @@ import {
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base'
 import clsx from 'clsx'
 import { useEffect } from 'react'
-import { AuthenticityTokenProvider } from 'remix-utils'
+import { AuthenticityTokenProvider } from 'remix-utils/csrf/react'
 
 import type { THEME } from '~/constants'
 import tailwindStyles from '~/tailwind.css'
 import vendorsStyles from '~/styles/vendors.css'
 import mainStyles from '~/styles/main.css'
 import darkStyles from '~/styles/dark.css'
-import { getGlobalSession } from '~/cookies/session.server'
+import { csrf } from '~/cookies/session.server'
 import { getAuthSession } from '~/cookies/auth.server'
 import { getEnv } from '~/env.server'
 import { getGlobalMetaTags } from '~/config/seo'
@@ -63,13 +63,10 @@ export type LoaderData = {
   theme: THEME | null
 }
 
-export const loader = async ({ request }: LoaderArgs) => {
-  const { createAuthenticityToken, commitSession } = await getGlobalSession(
-    request
-  )
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+  let [token, cookieHeader] = await csrf.commitToken();
   const themeSession = await getThemeSession(request)
   const { getUserId } = await getAuthSession(request)
-  const token = createAuthenticityToken()
   const userId = getUserId()
 
   return json<LoaderData>(
@@ -82,22 +79,18 @@ export const loader = async ({ request }: LoaderArgs) => {
     },
     {
       headers: {
-        'Set-Cookie': await commitSession(),
+        'Set-Cookie': cookieHeader as string,
       },
     }
   )
 }
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  const requestData = data?.requestData
-  return {
-    ...getGlobalMetaTags({
-      url: data?.url,
-      title: requestData?.title,
-      description: requestData?.description,
-    }),
-  }
+export function meta() {
+  return getGlobalMetaTags({
+    title: 'ConcertX',
+  });
 }
+
 
 type AppProps = {
   csrf: string
