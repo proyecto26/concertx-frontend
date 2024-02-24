@@ -1,5 +1,6 @@
-import { json, LoaderFunction } from '@remix-run/node';
-import { isPrefetch } from 'remix-utils';
+import type { LoaderFunction } from '@remix-run/node';
+import { json } from '@remix-run/node';
+import { isPrefetch } from 'remix-utils/is-prefetch';
 
 import Layout from '~/components/Layout';
 import HomePage from '~/pages/Home';

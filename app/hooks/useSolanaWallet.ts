@@ -22,7 +22,7 @@ export function useSolanaWallet() {
   } = useUserWallet();
 
   useEffect(() => {
-    if (publicKey && walletStatus !== 'loading' && publicKey.toBase58() !== walletPublicKey) {
+    if (publicKey && walletStatus !== 'pending' && publicKey.toBase58() !== walletPublicKey) {
       onLoadWallet()
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

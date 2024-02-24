@@ -4,7 +4,7 @@ export function getEnv() {
   return {
     // API_URL: apiUrl,
   };
-};
+}
 
 
 export type ENV = ReturnType<typeof getEnv>;

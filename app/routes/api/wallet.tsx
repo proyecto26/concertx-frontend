@@ -1,14 +1,13 @@
-import type { ActionArgs } from '@remix-run/node';
-import { type LoaderArgs, json } from '@remix-run/node'
+import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node';
+import { json } from '@remix-run/node'
 
 import { getAuthSession } from '~/cookies/auth.server'
-import { getGlobalSession } from '~/cookies/session.server'
+import { csrf } from '~/cookies/session.server'
 import { randomString } from '~/utils/crypto'
 import { verifySignature } from '~/utils/solana'
 
-export const action = async ({ request }: ActionArgs) => {
-  const { verifyAuthenticityToken } = await getGlobalSession(request)
-  await verifyAuthenticityToken()
+export const action = async ({ request }: ActionFunctionArgs) => {
+  await csrf.validate(request);
   try {
     const { getNonce, setPublicKey, setSignature, commitSession } =
       await getAuthSession(request)
@@ -38,7 +37,7 @@ export const action = async ({ request }: ActionArgs) => {
   }
 }
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { commitSession, getNonce, getPublicKey, getSignature, setNonce } = await getAuthSession(request)
   const headers = new Headers();
   let nonce = getNonce()

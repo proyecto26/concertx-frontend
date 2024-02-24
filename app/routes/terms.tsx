@@ -1,9 +1,19 @@
+import type { MetaArgs } from '@remix-run/node';
+import { metaV1 } from '@remix-run/v1-meta';
+
 import Layout from '~/components/Layout';
 import LoveIcon from '~/components/ui/icons/Love';
 
+export function meta(args: MetaArgs) {
+  return metaV1(args, {
+    title: 'ConcertX - Terms of Use',
+    description: 'The terms of use for ConcertX.',
+  });
+}
+
 export default function Index() {
   return (
-    <Layout title="ConcertX - Terms of Use">
+    <Layout title="Terms of Use">
       <section className="mt-10 container mx-auto px-6 py-12 text-dark-gray dark:text-dark">
         <h1 className="text-3xl lg:text-6xl font-medium mb-8">Terms of Use</h1>
         <p className="text-base dark:font-light lg:text-lg mb-6">Welcome to ConcertX! These terms of use (the "Terms") govern your access to and use of our website, mobile app, and other online services (collectively, the "Services").</p>
