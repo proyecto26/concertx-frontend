@@ -26,6 +26,7 @@ export const imgSrc = replaceNewLinesWithSpaces(`
   ${defaultSrc}
   https://*.genesysgo.net
   https://arweave.net
+  https://*.arweave.net
 `);
 
 export const contentSecurityPolicy = replaceNewLinesWithSpaces(`

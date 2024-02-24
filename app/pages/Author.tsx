@@ -1,21 +1,31 @@
 import { motion } from "framer-motion";
+import Button from "~/components/ui/Button";
 import { useGetAllNFTs } from "~/hooks";
+import { useListNFT } from "~/hooks/nfts/useListNFT";
 
 export type AuthorPageProps = {
   address: string;
+  network: string;
+  marketplaceAddress: string;
   username?: string;
   imgSrc?: string;
 }
 
 const AuthorPage: React.FC<AuthorPageProps> = ({
   address,
+  network,
+  marketplaceAddress,
   username = '@jdnichollsc',
-  imgSrc = "https://avatars.githubusercontent.com/u/2154886?s=200&v=4"
+  imgSrc = "/assets/concerx.jpg"
 }) => {
-  const { status, data } = useGetAllNFTs({ address });
+  const { status: nftsStatus, data } = useGetAllNFTs({ address });
   const nfts = data?.result ?? [];
+
+  const { status: listStatus, listNFT } = useListNFT({ sellerWallet: address, network, marketplaceAddress })
+  console.log('listStatus', listStatus)
+
   return (
-    <section className="container mx-auto px-5 py-8 md:py-12 lg:px-14 flex">
+    <section className="container mx-auto px-5 py-8 md:py-12 lg:px-14 flex gap-10">
       <aside className="w-1/4">
         <div>
           <img
@@ -79,7 +89,7 @@ const AuthorPage: React.FC<AuthorPageProps> = ({
 
       <section className="w-3/4 mt-6 lg:col-span-2 lg:mt-0 xl:col-span-3">
         <h2>
-          Products
+          NFTs
         </h2>
 
         <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:gap-x-8 xl:grid-cols-3">
@@ -107,9 +117,14 @@ const AuthorPage: React.FC<AuthorPageProps> = ({
                     {attributes.artist}
                   </h2>
                   <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">
-                    
                   </p>
                 </div>
+                <Button onClick={() => listNFT({
+                  nftAddress: mint,
+                  price: 1,
+                })}>
+                  List NFT
+                </Button>
               </div>
             </article>
           ))}
