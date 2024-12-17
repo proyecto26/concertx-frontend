@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import { cn } from '~/utils/styles'
 import type {
   HTMLAttributes,
   PropsWithChildren,
@@ -23,7 +23,7 @@ const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
     const link = href ?? '#'
     return (
       <div
-        className={clsx('flex items-start gap-3 pt-3', className)}
+        className={cn('flex items-start gap-3 pt-3', className)}
         ref={innerRef}
         {...rest}
       >

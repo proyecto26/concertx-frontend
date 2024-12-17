@@ -1,6 +1,6 @@
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
-import clsx from 'clsx'
 import React, { PropsWithChildren } from 'react'
+import { cn } from '~/utils/styles'
 
 type PaginationProps = PropsWithChildren & {
   className?: string
@@ -9,7 +9,7 @@ type PaginationProps = PropsWithChildren & {
 const Pagination: React.FC<PaginationProps> = ({ className }) => {
   return (
     <nav
-      className={clsx('isolate -space-x-px', className)}
+      className={cn('isolate -space-x-px', className)}
       aria-label="Pagination"
     >
       <a

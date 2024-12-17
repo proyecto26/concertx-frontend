@@ -2,10 +2,10 @@ import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PlusIcon } from '@heroicons/react/20/solid'
-import clsx from 'clsx';
 
 import type { Product } from "~/models/product";
 import ProductCard from '~/components/products/ProductCard';
+import { cn } from '~/utils/styles';
 
 const filters = [
   {
@@ -128,7 +128,7 @@ const MarketplacePage: React.FC<MarketplacePageProps> = ({ products }) => {
                               <span className="text-sm font-medium text-gray-900">{section.name}</span>
                               <span className="ml-6 flex h-7 items-center">
                                 <ChevronDownIcon
-                                  className={clsx(open ? '-rotate-180' : 'rotate-0', 'h-5 w-5 transform')}
+                                  className={cn(open ? '-rotate-180' : 'rotate-0', 'h-5 w-5 transform')}
                                   aria-hidden="true"
                                 />
                               </span>

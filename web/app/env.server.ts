@@ -1,9 +1,10 @@
-import { shyftApiKey, walletNetwork } from '~/utils/misc.server';
+import { shyftApiKey, supabaseKey, walletNetwork } from '~/utils/misc.server';
 
 export function getEnv() {
   return {
     WALLET_NETWORK: walletNetwork,
     SHYFT_API_KEY: shyftApiKey,
+    SUPABASE_KEY: supabaseKey,
   };
 }
 

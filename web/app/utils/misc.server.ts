@@ -19,3 +19,4 @@ function getRequiredServerEnvVar<T = string>(key: string, devValue?: unknown) {
 
 export const walletNetwork = getRequiredServerEnvVar('WALLET_NETWORK');
 export const shyftApiKey = getRequiredServerEnvVar('SHYFT_API_KEY');
+export const supabaseKey = getRequiredServerEnvVar('SUPABASE_KEY');

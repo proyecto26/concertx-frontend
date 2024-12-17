@@ -1,7 +1,7 @@
 import { Link, useLocation } from '@remix-run/react'
-import clsx from 'clsx'
 
 import { NAVIGATION } from '~/constants'
+import { cn } from '~/utils/styles'
 
 export type NavigationProps = {
   className?: string
@@ -11,7 +11,7 @@ export const Navigation: React.FC<NavigationProps> = ({ className }) => {
   const location = useLocation()
 
   return (
-    <nav className={clsx('text-base lg:text-sm', className)}>
+    <nav className={cn('text-base lg:text-sm', className)}>
       <ul className="space-y-9">
         {NAVIGATION.map((section) => (
           <li key={section.title}>
@@ -25,7 +25,7 @@ export const Navigation: React.FC<NavigationProps> = ({ className }) => {
                 <li key={link.href} className="relative">
                   <Link
                     to={link.href}
-                    className={clsx(
+                    className={cn(
                       'block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full',
                       link.href === location.pathname
                         ? 'font-semibold text-sky-500 before:bg-sky-500'

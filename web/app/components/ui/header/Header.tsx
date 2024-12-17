@@ -1,7 +1,6 @@
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import { Link } from '@remix-run/react'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
-import clsx from 'clsx'
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { useState } from 'react'
 import useOnclickOutside from 'react-cool-onclickoutside'
@@ -12,6 +11,7 @@ import { useScroll } from '~/hooks'
 import { MobileNavigation } from '../mobile/Navigation'
 import Search from '../search/Search'
 import ThemeButton from '../ThemeButton'
+import { cn } from '~/utils/styles'
 
 
 type HeaderProps = {
@@ -43,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
     <AnimatePresence initial={false}>
       <header
         ref={headerRef}
-        className={clsx(
+        className={cn(
           'sticky top-0 z-50 flex flex-wrap items-center justify-between bg-primary-contrast px-4 py-1 shadow-md shadow-slate-900/5 transition duration-500 dark:shadow-2xl sm:px-6 lg:px-8',
           isScrolled
             ? 'dark:bg-slate-900/95 dark:backdrop-blur dark:[@supports(backdrop-filter:blur(0))]:bg-slate-900/75'

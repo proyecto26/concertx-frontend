@@ -1,6 +1,5 @@
-import clsx from 'clsx'
 import React from 'react'
-
+import { cn } from '~/utils/styles'
 import { with3DHover } from '~/hocs'
 
 type FigureProps = React.DetailedHTMLProps<
@@ -24,7 +23,7 @@ const Figure: React.FC<FigureProps> = ({
 }) => {
   return (
     <figure
-      className={clsx(
+      className={cn(
         'relative max-w-2xl cursor-pointer grayscale filter transition-all duration-300 hover:grayscale-0',
         className
       )}
@@ -32,7 +31,7 @@ const Figure: React.FC<FigureProps> = ({
     >
       <a href={link}>
         <img
-          className={clsx('rounded-2xl bg-indigo-50 object-cover', imgClass)}
+          className={cn('rounded-2xl bg-indigo-50 object-cover', imgClass)}
           src={imgSrc}
           alt={imgAlt}
         />
