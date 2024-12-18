@@ -7,6 +7,12 @@ skip-lint = false
 [programs.localnet]
 concert_x = "Fh63wv5yhjeNPhyd7jN4ZAhAqLjngHxr8fhV9u7F21fu"
 
+[programs.devnet]
+concert_x = "EDgnnYxcnjZ1RfkNnMYvqqNs42iFJ7vVCEMzwRw9td8s"
+
+[programs.testnet]
+concert_x = "Fh63wv5yhjeNPhyd7jN4ZAhAqLjngHxr8fhV9u7F21fu"
+
 [registry]
 url = "https://api.apr.dev"
 
