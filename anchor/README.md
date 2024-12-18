@@ -2,10 +2,7 @@
 
 This is the repository for the ConcertX Anchor program.
 
-## Install dependencies
 
-```bash
-```
 
 ## Build the program
 
