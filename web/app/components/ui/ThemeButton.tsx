@@ -1,16 +1,14 @@
-
 import { MoonIcon } from '@heroicons/react/20/solid'
 import { SunIcon } from '@heroicons/react/24/outline'
+import type { FC, ButtonHTMLAttributes } from 'react'
 
-import clsx from 'clsx'
-import React, { ButtonHTMLAttributes } from 'react'
-
+import { cn } from '~/utils/styles'
 import { THEME } from '~/constants'
 import { useTheme } from '~/theme'
 
 type ThemeButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
 
-const ThemeButton: React.FC<ThemeButtonProps> = ({ className, ...rest }) => {
+const ThemeButton: FC<ThemeButtonProps> = ({ className, ...rest }) => {
   const [theme, setTheme] = useTheme()
   return (
     <button
@@ -18,7 +16,7 @@ const ThemeButton: React.FC<ThemeButtonProps> = ({ className, ...rest }) => {
         setTheme((prev) => (prev === THEME.DARK ? THEME.LIGHT : THEME.DARK))
       }
       type="button"
-      className={clsx(
+      className={cn(
         'inline-flex flex-none flex-shrink-0 items-center p-2 text-black',
         className
       )}

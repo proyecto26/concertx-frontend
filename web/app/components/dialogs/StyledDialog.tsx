@@ -1,9 +1,9 @@
 import { Dialog } from '@headlessui/react';
-import clsx from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import type { PropsWithChildren } from 'react';
 
 import { transitionVariants } from '../../utils/motion';
+import { cn } from '~/utils/styles';
 
 interface StyledDialogProps extends PropsWithChildren {
   isOpen: boolean;
@@ -46,7 +46,7 @@ export default function StyledDialog({
             initial="growOut"
             animate="growIn"
             exit="growOut"
-            className={clsx(
+            className={cn(
               `flex w-full max-w-[92rem] items-center justify-center`,
               className
             )}

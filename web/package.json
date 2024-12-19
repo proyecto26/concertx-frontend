@@ -14,6 +14,7 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@2toad/profanity": "^3.0.1",
     "@coral-xyz/anchor": "^0.30.1",
     "@headlessui/react": "1.7.18",
     "@heroicons/react": "2.1.1",
@@ -26,6 +27,7 @@
     "@solana/wallet-adapter-react": "0.15.35",
     "@solana/wallet-adapter-react-ui": "0.9.35",
     "@solana/web3.js": "1.78.2",
+    "@supabase/supabase-js": "^2.47.8",
     "@tanstack/react-query": "5.22.2",
     "axios": "1.6.7",
     "clsx": "2.1.0",
@@ -35,11 +37,13 @@
     "framer-motion": "11.0.5",
     "isbot": "4.1.0",
     "lodash": "4.17.21",
+    "md5": "^2.3.0",
     "react": "18.2.0",
     "react-cool-onclickoutside": "1.7.0",
     "react-dom": "18.2.0",
     "react-responsive": "9.0.2",
     "remix-utils": "7.5.0",
+    "tailwind-merge": "^2.5.5",
     "tweetnacl": "1.0.3"
   },
   "devDependencies": {

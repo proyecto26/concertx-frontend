@@ -1,7 +1,7 @@
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import { Link } from '@remix-run/react'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
-import clsx from 'clsx'
+import { useWallet } from '@solana/wallet-adapter-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { useState } from 'react'
 import useOnclickOutside from 'react-cool-onclickoutside'
@@ -12,13 +12,15 @@ import { useScroll } from '~/hooks'
 import { MobileNavigation } from '../mobile/Navigation'
 import Search from '../search/Search'
 import ThemeButton from '../ThemeButton'
-
+import WalletMenu from '~/components/wallet/WalletMenu'
+import { cn } from '~/utils/styles'
 
 type HeaderProps = {
   title?: string
 }
 
 const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
+  const { connected } = useWallet()
   const { isScrolled } = useScroll()
   const [isSearchFocused, setSearchFocused] = useState(false)
   const [isMobileSearchFocused, setMobileSearchFocused] = useState(false)
@@ -43,7 +45,7 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
     <AnimatePresence initial={false}>
       <header
         ref={headerRef}
-        className={clsx(
+        className={cn(
           'sticky top-0 z-50 flex flex-wrap items-center justify-between bg-primary-contrast px-4 py-1 shadow-md shadow-slate-900/5 transition duration-500 dark:shadow-2xl sm:px-6 lg:px-8',
           isScrolled
             ? 'dark:bg-slate-900/95 dark:backdrop-blur dark:[@supports(backdrop-filter:blur(0))]:bg-slate-900/75'
@@ -111,16 +113,20 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
             )}
             <ClientOnly>
               {() => (
-              <WalletMultiButton className="hover:bg-transparent">
-                 {isMobile && (
-                  <img
-                    alt="Wallet"
-                    aria-hidden="true"
-                    src="/assets/wallet_icon.svg"
-                    className="h-7 w-7 dark:invert z-0"
-                  />
-                 )}
-              </WalletMultiButton>
+                connected ? (
+                  <WalletMenu />
+                ) : (
+                  <WalletMultiButton className="hover:bg-transparent">
+                    {isMobile && (
+                      <img
+                        alt="Wallet"
+                        aria-hidden="true"
+                        src="/assets/wallet_icon.svg"
+                        className="h-7 w-7 dark:invert z-0"
+                      />
+                    )}
+                  </WalletMultiButton>
+                )
               )}
             </ClientOnly>
             <ThemeButton />

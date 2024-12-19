@@ -13,7 +13,6 @@ import {
   useRouteError,
 } from '@remix-run/react'
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base'
-import clsx from 'clsx'
 import { useEffect } from 'react'
 import { AuthenticityTokenProvider } from 'remix-utils/csrf/react'
 
@@ -31,8 +30,8 @@ import { getThemeSession } from '~/theme/theme.server'
 import { withSolanaWalletConnection } from '~/hocs'
 import { withQueryClientProvider } from '~/utils/query'
 import WalletDialog from '~/components/dialogs/WalletDialog';
-import { useFindMarketplace } from '~/hooks/nfts/useFindMarketplace';
-import { useMarketplace } from './hooks/nfts/useMarketplace';
+import { useMarketplace } from '~/hooks/nfts/useMarketplace';
+import { cn } from '~/utils/styles';
 
 export const links: LinksFunction = () => {
   return [
@@ -113,7 +112,7 @@ function App({ csrf, ENV }: AppProps) {
 
   return (
     <AuthenticityTokenProvider token={csrf}>
-      <html lang="en" className={clsx('h-full', theme)}>
+      <html lang="en" className={cn('h-full', theme)}>
         <head>
           <Meta />
           <meta

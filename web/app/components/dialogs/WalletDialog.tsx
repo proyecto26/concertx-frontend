@@ -1,11 +1,11 @@
 import { Dialog } from '@headlessui/react'
 import { Link } from '@remix-run/react'
-import clsx from 'clsx'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
 import { useSolanaWallet } from '~/hooks'
 import { transitionVariants } from '~/utils/motion'
+import { cn } from '~/utils/styles'
 
 interface WalletDialogProps {
   className?: string
@@ -53,7 +53,7 @@ export default function WalletDialog({
             initial="growOut"
             animate="growIn"
             exit="growOut"
-            className={clsx(
+            className={cn(
               `flex w-full max-w-2xl items-center justify-center bg-light p-5 rounded-3xl`,
               className
             )}

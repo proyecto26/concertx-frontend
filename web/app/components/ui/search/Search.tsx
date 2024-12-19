@@ -1,6 +1,6 @@
 import { MagnifyingGlassIcon, MicrophoneIcon } from '@heroicons/react/20/solid';
 import React, { useId } from 'react';
-import clsx from 'clsx';
+import { cn } from '~/utils/styles';
 
 type SearchProps = {
   className?: string;
@@ -12,7 +12,7 @@ type SearchProps = {
 const Search: React.FC<SearchProps> = ({ className, autoFocus, onFocus, onBlur }) => {
   const searchId = useId();
   return (
-    <form className={clsx('flex items-center', className)}>
+    <form className={cn('flex items-center', className)}>
       <label htmlFor={searchId} className="sr-only">
         Search
       </label>
