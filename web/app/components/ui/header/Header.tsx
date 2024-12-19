@@ -1,6 +1,7 @@
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import { Link } from '@remix-run/react'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
+import { useWallet } from '@solana/wallet-adapter-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import React, { useState } from 'react'
 import useOnclickOutside from 'react-cool-onclickoutside'
@@ -11,14 +12,15 @@ import { useScroll } from '~/hooks'
 import { MobileNavigation } from '../mobile/Navigation'
 import Search from '../search/Search'
 import ThemeButton from '../ThemeButton'
+import WalletMenu from '~/components/wallet/WalletMenu'
 import { cn } from '~/utils/styles'
-
 
 type HeaderProps = {
   title?: string
 }
 
 const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
+  const { connected } = useWallet()
   const { isScrolled } = useScroll()
   const [isSearchFocused, setSearchFocused] = useState(false)
   const [isMobileSearchFocused, setMobileSearchFocused] = useState(false)
@@ -111,16 +113,20 @@ const Header: React.FC<HeaderProps> = ({ title = 'ConcertX' }) => {
             )}
             <ClientOnly>
               {() => (
-              <WalletMultiButton className="hover:bg-transparent">
-                 {isMobile && (
-                  <img
-                    alt="Wallet"
-                    aria-hidden="true"
-                    src="/assets/wallet_icon.svg"
-                    className="h-7 w-7 dark:invert z-0"
-                  />
-                 )}
-              </WalletMultiButton>
+                connected ? (
+                  <WalletMenu />
+                ) : (
+                  <WalletMultiButton className="hover:bg-transparent">
+                    {isMobile && (
+                      <img
+                        alt="Wallet"
+                        aria-hidden="true"
+                        src="/assets/wallet_icon.svg"
+                        className="h-7 w-7 dark:invert z-0"
+                      />
+                    )}
+                  </WalletMultiButton>
+                )
               )}
             </ClientOnly>
             <ThemeButton />

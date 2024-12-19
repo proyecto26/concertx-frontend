@@ -1,7 +1,7 @@
-import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PlusIcon } from '@heroicons/react/20/solid'
+import { Fragment, useState } from 'react'
 
 import type { Product } from "~/models/product";
 import ProductCard from '~/components/products/ProductCard';

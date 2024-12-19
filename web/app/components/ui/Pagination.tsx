@@ -1,12 +1,13 @@
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
-import React, { PropsWithChildren } from 'react'
+import type { FC, PropsWithChildren } from 'react'
+
 import { cn } from '~/utils/styles'
 
 type PaginationProps = PropsWithChildren & {
   className?: string
 }
 
-const Pagination: React.FC<PaginationProps> = ({ className }) => {
+const Pagination: FC<PaginationProps> = ({ className }) => {
   return (
     <nav
       className={cn('isolate -space-x-px', className)}

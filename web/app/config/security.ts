@@ -8,6 +8,7 @@ export function replaceNewLinesWithSpaces(str: string) {
 
 export const defaultSrc = replaceNewLinesWithSpaces(`
   https://*.shyft.to
+  https://*.supabase.co
 `);
 
 export const scriptSrc = replaceNewLinesWithSpaces(`

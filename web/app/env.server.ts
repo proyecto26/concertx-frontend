@@ -1,4 +1,4 @@
-import { shyftApiKey, supabaseKey, walletNetwork } from '~/utils/misc.server';
+import { shyftApiKey, supabaseKey, walletNetwork } from '~/config/env.server';
 
 export function getEnv() {
   return {
