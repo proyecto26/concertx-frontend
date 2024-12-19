@@ -1,9 +1,9 @@
 import { cn } from '~/utils/styles'
-import React, { ButtonHTMLAttributes } from 'react'
+import type { FC, ButtonHTMLAttributes } from 'react'
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
 
-const Button: React.FC<ButtonProps> = ({
+const Button: FC<ButtonProps> = ({
   children,
   className,
   type,
