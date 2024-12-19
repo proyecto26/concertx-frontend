@@ -1,0 +1,7 @@
+anchor/.anchor/
+.DS_Store
+anchor/target/
+**/*.rs.bk
+anchor/node_modules/
+test-ledger/
+.yarn
