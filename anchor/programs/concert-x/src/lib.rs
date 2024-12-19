@@ -1,5 +1,4 @@
 use anchor_lang::prelude::*;
-use anchor_lang::system_program::{transfer, Transfer};
 
 // Program ID for the ConcertX smart contract
 declare_id!("Fh63wv5yhjeNPhyd7jN4ZAhAqLjngHxr8fhV9u7F21fu");
@@ -43,39 +42,68 @@ pub mod concert_x {
         Ok(())
     }
 
-    
+    pub fn update_concert_status(ctx: Context<UpdateConcertStatus>, new_status: u8) -> Result<()> {
+        require!(
+            ctx.accounts.authority.key() == ctx.accounts.concert.pda,
+            ErrorCode::Unauthorized
+        );
+
+        let concert = &mut ctx.accounts.concert;
+        concert.status = new_status;
+        
+        Ok(())
+    }
 
     pub fn make_contribution(ctx: Context<MakeContribution>, amount: f32) -> Result<()> {
-        //makes a contribution to a concert campaign
-        //
-        // # Arguments
-        // * `ctx` - The context of the instruction
-        // * `amount` - The amount of SOL to contribute
-
-        //Require that campaign is active and contribution amount is greater than or equal ticket price
+        let clock = Clock::get()?;
+        
+        // Validate campaign is still active
         require!(
             ctx.accounts.concert.status == 0,
             ErrorCode::ConcertNotActive
         );
+        
+        // Validate campaign hasn't ended
         require!(
-            amount >= ctx.accounts.concert.ticket_price,
-            ErrorCode::ContributionAmountTooSmall);
-
-        //Get accounts info and create CPI context for transfer
-        let backer_key = ctx.accounts.backer.to_account_info();
-        let concert_key = ctx.accounts.concert.to_account_info();
-        let program_id = ctx.accounts.system_program.to_account_info();
-        let cpi_context = CpiContext::new(
-            program_id, 
-            Transfer {from: backer_key, to: concert_key},
+            clock.unix_timestamp <= ctx.accounts.concert.end_date,
+            ErrorCode::CampaignEnded
         );
-
-        //transfer SOL to the concert escrow account
-        transfer(cpi_context, amount as u64)?;
-
-        //Update the current amount
-        ctx.accounts.concert.current_amount += amount;
-        ctx.accounts.concert.contributors.push(*ctx.accounts.backer.key);
+        
+        // Validate contribution amount
+        require_gte!(
+            amount,
+            ctx.accounts.concert.ticket_price,
+            ErrorCode::ContributionAmountTooSmall
+        );
+        
+        // Convert amount to lamports (1 SOL = 1,000,000,000 lamports)
+        let lamports = (amount * 1_000_000_000.0) as u64;
+        
+        // Create contribution record
+        let contribution = &mut ctx.accounts.contribution;
+        contribution.contributor = ctx.accounts.backer.key();
+        contribution.concert = ctx.accounts.concert.key();
+        contribution.amount = amount;
+        contribution.timestamp = clock.unix_timestamp;
+        
+        // Update concert state
+        let concert = &mut ctx.accounts.concert;
+        concert.current_amount += amount;
+        concert.contributors.push(ctx.accounts.backer.key());
+        
+        // Transfer SOL using system program
+        anchor_lang::solana_program::program::invoke(
+            &anchor_lang::solana_program::system_instruction::transfer(
+                &ctx.accounts.backer.key(),
+                &ctx.accounts.concert.key(),
+                lamports
+            ),
+            &[
+                ctx.accounts.backer.to_account_info(),
+                ctx.accounts.concert.to_account_info(),
+                ctx.accounts.system_program.to_account_info(),
+            ],
+        )?;
         
         Ok(())
     }
@@ -104,11 +132,33 @@ pub struct CreateConcert<'info> {
 /// Account validation struct for making contributions
 #[derive(Accounts)]
 pub struct MakeContribution<'info> {
-    #[account(mut)]  /// The concert account receiving the contribution
-    pub concert: Account<'info, Concert>,  // Escrow account to receive the lamports
-    #[account(mut)]  /// The account making the contribution
+    #[account(mut)]
+    pub concert: Account<'info, Concert>,
+    
+    #[account(
+        init,
+        payer = backer,
+        space = 8 + 32 + 32 + 4 + 8,
+        seeds = [
+            b"contribution",
+            concert.key().as_ref(),
+            backer.key().as_ref(),
+        ],
+        bump
+    )]
+    pub contribution: Account<'info, Contribution>,
+    
+    #[account(mut)]
     pub backer: Signer<'info>,
-    pub system_program: Program<'info, System>,  // The system program to manage lamport transfers
+    pub system_program: Program<'info, System>,
+    pub clock: Sysvar<'info, Clock>,
+}
+
+#[derive(Accounts)]
+pub struct UpdateConcertStatus<'info> {
+    #[account(mut)]
+    pub concert: Account<'info, Concert>,
+    pub authority: Signer<'info>,
 }
 
 /// Constants and size calculations for the Concert account
@@ -170,7 +220,6 @@ pub enum ErrorCode {
     ConcertNotActive,
     /// Returned when contribution would exceed the funding goal
     #[msg("The funding goal has been exceeded.")]
-
     GoalExceeded,
     /// Returned when a calculation would cause an overflow
     #[msg("Math overflow.")]
@@ -179,5 +228,20 @@ pub enum ErrorCode {
     #[msg("Transfer error")]
     TransferFailed,
     #[msg("Contribution amount is too small")]
-    ContributionAmountTooSmall
+    ContributionAmountTooSmall,
+    #[msg("Campaign has ended")]
+    CampaignEnded,
+    #[msg("Campaign has not started yet")]
+    CampaignNotStarted,
+    #[msg("Unauthorized to perform this action")]
+    Unauthorized,
+}
+
+#[account]
+#[derive(InitSpace)]
+pub struct Contribution {
+    pub contributor: Pubkey,
+    pub concert: Pubkey,
+    pub amount: f32,
+    pub timestamp: i64,
 }
